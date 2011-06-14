@@ -1,0 +1,89 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%2345678901234567890123456789012345678901234567890123456789012345678901234567890
+%        1         2         3         4         5         6         7         8
+
+\documentclass[letterpaper, 10 pt, conference]{ieeeconf}  % Comment this line out
+                                                          % if you need a4paper
+%\documentclass[a4paper, 10pt, conference]{ieeeconf}      % Use this line for a4
+                                                          % paper
+
+\IEEEoverridecommandlockouts                              % This command is only
+                                                          % needed if you want to
+                                                          % use the \thanks command
+\overrideIEEEmargins
+% See the \addtolength command later in the file to balance the column lengths
+% on the last page of the document
+
+
+
+% The following packages can be found on http:\\www.ctan.org
+%\usepackage{graphics} % for pdf, bitmapped graphics files
+%\usepackage{epsfig} % for postscript graphics files
+%\usepackage{mathptmx} % assumes new font selection scheme installed
+%\usepackage{times} % assumes new font selection scheme installed
+%\usepackage{amsmath} % assumes amsmath package installed
+%\usepackage{amssymb}  % assumes amsmath package installed
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{xspace}  
+
+\newcommand{\diaspec}{Dia\-Spec\xspace}
+
+\title{Using the \diaspec{} design language and compiler to develop
+  robotics systems}
+
+\author{%
+  \parbox{3 in}{\centering Damien Cassou\\
+    Software Architecture Group, HPI\\
+    University of Potsdam, Germany\\%
+    {\tt\small damien.cassou@hpi.uni-potsdam.de}}
+  \hspace*{ 0.5 in}
+  \parbox{3 in}{ \centering Serge Stinckwich and Pierrick Koch\\
+    IRD, UMMISCO\\
+    Hanoi, Vietnam\\
+    {\tt\small serge.stinckwich@ird.fr}}
+}
+
+% \author{Damien Cassou and Serge Stinckwich and Pierrick Koch% <-this % stops a space
+% %\thanks{This work was not supported by any organization}% <-this % stops a space
+%   \thanks{H. Kwakernaak is with Faculty of Electrical Engineering,
+%     Mathematics and Computer Science, University of Twente, 7500 AE
+%     Enschede, The Netherlands {\tt\small h.kwakernaak@autsubmit.com}}%
+%   \thanks{P. Misra is with the Department of Electrical Engineering,
+%     Wright State University, Dayton, OH 45435, USA {\tt\small
+%       pmisra@cs.wright.edu}}%
+% }
+
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\pagestyle{empty}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+
+These instructions provide basic guidelines for preparing camera-ready (CR)
+Proceedings-style papers. This document is itself an example of the
+desired layout for CR papers (inclusive of this abstract). The document
+contains information regarding desktop publishing format, type sizes, and
+type faces. Style rules are provided that explain how to handle equations,
+units, figures, tables, references, abbreviations, and acronyms. Sections
+are also devoted to the preparation of the references and acknowledgments.
+
+\end{abstract}
+
+\input{introduction}
+\input{diaspec-overview}
+
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% TeX-PDF-mode: t
+%%% coding: utf-8
+%%% ispell-local-dictionary: "english"
+%%% End:
