@@ -1,6 +1,38 @@
-\section{Overview of \diaspec{}}
-\label{sec:overview-diaspec}
+An SCC application can be defined according to an architectural
+pattern involving four kinds of components, organized into layers: (1)
+\emph{sensors} at the bottom, which obtain information about the
+environment; (2) then \emph{context operators}, which process this
+information; (3) then \emph{control operators}, which use this refined
+information to control (4) \emph{actuators} at the top, which finally
+impact the environment.
 
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{diaspec-process}
+  \caption{Overview of the \diaspec{} development process}
+  \label{fig:diaspec-process}
+\end{figure}
+
+\diaspec{} is a design language dedicated to describing SCC
+applications. From such a design description, the \diaspec{} compiler
+produces a dedicated Java programming framework
+(Figure~\ref{fig:diaspec-process}) that is both \emph{prescriptive}
+and \emph{restrictive}: it is prescriptive in the sense that it guides
+the developer, and it is restrictive in the sense that it limits the
+developer to what the design description allows. For each component
+description in the design, the compiler generates an abstract class.
+The abstract methods in this class represent code to be provided by
+the developer, to allow him to program the application logic. To
+implement a component, the developer implements these methods in a
+subclass of this abstract class and thus never modifies generated
+code.
+
+By separating application logic (implemented by the developers) and
+runtime support (generated in the programming framework), \diaspec{}
+facilitates the design, implementation and evolution of SCC
+applications. In the rest of this paper, we assume that robotics
+applications are a subset of SCC applications and demonstrate that
+\diaspec{} can be applied in the robotics domain.
 
 %%% Local Variables:
 %%% mode: latex
