@@ -1,13 +1,17 @@
-
 \section{Introduction}
 
-An SCC application can be defined according to an architectural
-pattern involving four kinds of components, organized into layers: (1)
+A Sense/Compute/Control (SCC) application is one that interacts with
+the physical environment~\cite{Tayl09a}. The SCC architectural pattern
+guides the description of SCC applications and involves four kinds of
+components, organized into layers~\cite{Cass11a,Edwar09a}: (1)
 \emph{sensors} at the bottom, which obtain information about the
 environment; (2) then \emph{context operators}, which process this
 information; (3) then \emph{control operators}, which use this refined
 information to control (4) \emph{actuators} at the top, which finally
-impact the environment.
+impact the environment. A robotics application is a kind of SCC
+application where the physical environment is composed of a robot
+(engines, a knowledge base, a software, \etc{}) and the robot's
+neighborhood (the walls, ground, people, \etc{})~\cite{Sicil08a}.
 
 \begin{figure}
   \centering
@@ -24,18 +28,20 @@ and \emph{restrictive}: it is prescriptive in the sense that it guides
 the developer, and it is restrictive in the sense that it limits the
 developer to what the design description allows. For each component
 description in the design, the compiler generates an abstract class.
-The abstract methods in this class represent code to be provided by
-the developer, to allow him to program the application logic. To
-implement a component, the developer implements these methods in a
-subclass of this abstract class and thus never modifies generated
-code.
+The abstract methods in this class (\emph{holes} in the programming
+framework represented in Figure~\ref{fig:diaspec-process}) represent
+code to be provided by the developer, to allow him to program the
+application logic (\textit{}). To implement a component, the developer
+implements these methods in a subclass of this abstract class and thus
+never modifies generated code.
 
 By separating application logic (implemented by the developers) and
 runtime support (generated in the programming framework), \diaspec{}
 facilitates the design, implementation and evolution of SCC
-applications. In the rest of this paper, we assume that robotics
-applications are a subset of SCC applications and demonstrate that
-\diaspec{} can be applied in the robotics domain.
+applications. In the rest of this paper, we report on an experiment of
+designing a standard robotics application in the SCC architectural
+style with the \diaspec{} language and show how to implement such an
+application on top of the generated programming framework.
 
 %%% Local Variables:
 %%% mode: latex
@@ -44,9 +50,3 @@ applications are a subset of SCC applications and demonstrate that
 %%% TeX-PDF-mode: t
 %%% ispell-local-dictionary: "english"
 %%% End:
-
-
-%%% Local Variables: 
-%%% mode: latex
-%%% TeX-master: "dslrob"
-%%% End: 
