@@ -31,9 +31,10 @@ description in the design, the compiler generates an abstract class.
 The abstract methods in this class (\emph{holes} in the programming
 framework represented in Figure~\ref{fig:diaspec-process}) represent
 code to be provided by the developer, to allow him to program the
-application logic (\textit{}). To implement a component, the developer
-implements these methods in a subclass of this abstract class and thus
-never modifies generated code.
+application logic (\textit{bumps} in the developer's implementation in
+Figure~\ref{fig:diaspec-process}). To implement a component, the
+developer implements these methods in a subclass of this abstract
+class and thus never modifies generated code.
 
 By separating application logic (implemented by the developers) and
 runtime support (generated in the programming framework), \diaspec{}
