@@ -35,7 +35,13 @@ layers. Each layer corresponds to a separate class of components:
 \end{itemize}
 
 The following gives some guidelines to decompose a robotics
-application into these layers.
+application into these layers. 
+
+\paragraph{Reusing existing components}
+In the presence of a previous application developed with \diaspec{},
+it is possible and advisable to reuse as much as possible. Depending
+on the amount of reused components, this can have a huge impact on the
+application of the other guidelines.
 
 \paragraph{Listing capabilities}
 Each robot comes with its own set of capabilities. These capabilities
@@ -45,7 +51,7 @@ Besides sources and actions, an entity may also have \emph{attributes}
 to characterize their properties (\eg{} accuracy, status). In the
 presence of a high-level software framework (such as ROS), it can be
 useful to also map capabilities of the framework into sources and
-actions.
+actions. 
 
 \paragraph{Identifying main context operators}
 The first step of the decomposition in components within layers is the
@@ -70,7 +76,17 @@ that the code of a control operator is as simple as possible. If there
 is opportunity for reuse, the code should be moved to a new context
 operator.
 
+\subsection{Describing with \diaspec{}}
 
+Once the application is decomposed in the different component types,
+the transcription to the \diaspec{} design language is
+straightforward. Listing~\ref{listing:design} gives the transcription
+of the case study.
+
+\lstinputlisting[float,language=diaspec,breakatwhitespace=true%
+,caption={Case study design description in the \diaspec{} language}%
+,label={listing:design}]%
+{code/design.diaspec}
 
 %%% Local Variables:
 %%% mode: latex

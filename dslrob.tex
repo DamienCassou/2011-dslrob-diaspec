@@ -53,6 +53,42 @@ CNRS, UMR 6072 GREYC\\ F-14032 Caen, France\\
     {\tt\small pierrick.koch@unicaen.fr}}
 }
 
+\usepackage{listings}
+
+\lstset{language=[LaTeX]Tex,%C++,
+    keywordstyle=\bfseries,
+    basicstyle=\footnotesize\ttfamily,
+    %identifierstyle=\color{NavyBlue},
+    commentstyle=\ttfamily,
+    stringstyle=\rmfamily,
+    numbers=left,%none,%left,%
+    numberstyle=\tiny,%\scriptsize,%\tiny
+    stepnumber=1,
+    numbersep=8pt,
+    numberfirstline=true,       %
+    numberblanklines=true,     %
+    showstringspaces=false,
+    breaklines=true,
+    breakatwhitespace=true,
+%    frameround=ftff,
+%    frame=single,
+    belowcaptionskip=.75\baselineskip,
+    captionpos=b,
+    numberbychapter=false,
+    escapechar=\#
+    %frame=L
+} 
+
+\lstdefinelanguage{diaspec}
+{morekeywords={entity, attribute, extends, source, action, controller,
+    context, from, on, void, Integer, Boolean, String, enumeration,
+    structure, indexed, by, as, include, when, get, no, maybe, always,
+    publish, behavior, required, provided, abstract, do, any},%
+  sensitive=true,
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+}
+
 \begin{document}
 
 \maketitle
@@ -87,7 +123,7 @@ CNRS, UMR 6072 GREYC\\ F-14032 Caen, France\\
 
 \input{introduction}
 \input{designing}
-\label{sec:implementing}
+\input{implementing}
 \label{sec:discussing}
 \label{sec:related}
 \label{sec:conclusion}
