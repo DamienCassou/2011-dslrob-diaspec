@@ -1,3 +1,15 @@
-entity Schmoll {
+action OnOff { #\label{design:onoff-b}#
+  #on#();#\label{design:on}#
+  off();#\label{design:off}#
+}#\label{design:onoff-e}#
 
-}
+device Stoppable {#\label{design:stoppable-b}#
+  action OnOff;
+  attribute isStarted as Boolean;#\label{design:isStarted}#
+}#\label{design:stoppable-e}#
+
+device Light extends Stoppable {}#\label{design:light}#
+
+device LaserScan extends Stoppable {#\label{design:laserscan-b}#
+	source ranges as Float[];#\label{design:laserscan-ranges}#
+}#\label{design:laserscan-e}#

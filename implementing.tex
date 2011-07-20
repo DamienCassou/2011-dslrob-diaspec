@@ -61,14 +61,45 @@ and robots.
 
 \subsection{Implementing an entity}
 
-Contrary to operators, an entity is at the border between the
-environment (\eg{} the middleware and robot hardware) and the
-application. Implementing an entity thus require 
+Contrary to operators which are dedicated to the application logic, an
+entity is at the border between the application and its environment
+(\eg{} the middleware and robot hardware). Implementing an entity thus
+requires some knowledge of the underlying hardware or middleware.
 
-%%% Local Variables:
-%%% mode: latex
-%%% coding: utf-8
-%%% TeX-master: "dslrob"
-%%% TeX-PDF-mode: t
-%%% ispell-local-dictionary: "english"
-%%% End:
+Listing~\ref{listing:laserscan-implem} presents a possible Java
+implementation of the \ct{LaserScan} entity class for the ROS
+middleware. When the middleware publishes a new laser scan message,
+this message is automatically received by the \ct{RosLaserScan}
+instance through the ROS \ct{MessageListener} interface.
+
+\lstinputlisting%
+[float,language=java,%
+caption={A developer-supplied Java implementation of the
+  \texttt{LaserScan} entity class described in
+  Listing~\ref{listing:design}, line~\ref{design:laserscan-b}},%
+label={listing:laserscan-implem}]%
+{code/RosLaserScan.java}
+
+Listing~\ref{listing:light-implem} presents a possible Java
+implementation of the \ct{Light} entity class for the ROS middleware.
+The constructor receives a ROS \ct{publisher} as a parameter which
+allows the entity implementation to send commands to the robot through
+the middleware.
+
+\lstinputlisting%
+[float,language=java,%
+caption={A developer-supplied Java implementation of the
+  \texttt{Light} entity class described in
+  Listing~\ref{listing:design}, line~\ref{design:light}},%
+label={listing:light-implem}]%
+{code/RosLight.java}
+
+\subsection{Deploying an application}
+
+
+\lstinputlisting%
+[float,language=java,%
+caption={A developer-supplied Java deployment script of the
+ case-study application},%
+label={listing:deploy}]%
+{code/Deploy.java}
