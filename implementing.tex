@@ -1,7 +1,69 @@
 \section{Implementing a robotics application}
 \label{sec:implementing}
 
+The \diaspec{} compiler generates a programming framework with respect
+to a set of declarations for entity classes, context operators and
+control operators. For each component description (entity or operator)
+the compiler generates an abstract class. The abstract methods in this
+class represent code to be provided by the developer, to allow him to
+program the application logic (\eg{} to trigger an entity action). 
 
+Implementing a \diaspec{} component is done by \textit{sub-classing}
+the corresponding generated abstract class. In doing so, the developer
+is required to implement each abstract method. The developer writes
+the application code in subclasses, not in the generated abstract
+classes. This strategy contrasts with generating incomplete source
+code, to be filled by the developer. As a result, in our approach, one
+can change the \diaspec{} description and generate a new programming
+framework without overriding the developer code. The mismatches
+between the existing code and the new programming framework are
+revealed by the Java compiler. To facilitate the implementation
+process, most Java IDEs are capable of generating class templates
+based on super abstract classes.
+
+In this section, we give an overview of how to implement some parts of
+the case study and present a mapping with the ROS software framework.
+For a more detailed description, we refer to our previous
+works~\cite{Cass09b,Cass11a,Cass11b}.
+
+\subsection{Implementing an operator}
+
+For each context or control operator, a dedicated abstract class is
+generated in the programming framework. For each interaction contract
+of this operator, the generated abstract class contains an
+\emph{abstract method} and a corresponding \emph{calling method}. The
+abstract method is to be implemented by the developer while the
+calling method is used by the framework to call the implementation of
+the abstract method with the expected arguments.
+
+The signature of each abstract method is directly derived from the
+interaction contract: the name of the method is derived from the
+activation condition, the return type is derived from the reaction,
+and the parameters are derived from the activation condition, the data
+requirements and the reaction altogether. 
+
+Listing~\ref{listing:contextop-implem} presents a possible Java
+implementation of the \ct{Movement} context operator. The
+\ct{onObstacleDetection} method is declared abstract in the
+\ct{AbstractMovement} super class.
+
+\lstinputlisting%
+[float,language=java,%
+caption={A developer-supplied Java implementation of the \texttt{Movement}
+  context operator described in Listing~\ref{listing:design}},%
+label={listing:contextop-implem}]%
+{code/Movement.java}
+
+Because an operator only manipulates input sources to produce a
+result, its implementation is independent of any robotics software
+framework. This facilitates operator reuse for different applications
+and robots.
+
+\subsection{Implementing an entity}
+
+Contrary to operators, an entity is at the border between the
+environment (\eg{} the middleware and robot hardware) and the
+application. Implementing an entity thus require 
 
 %%% Local Variables:
 %%% mode: latex

@@ -28,8 +28,23 @@
 \usepackage[utf8]{inputenc}
 \usepackage{xspace}  
 \usepackage{cite}  
+\usepackage{ifthen}
+
+% Hyphenate CamelCaseWords before each uppercase letter
+\makeatletter
+\newcommand{\camelhyph}[1]{\@fterfirst\c@amelhyph#1\relax }
+\def\@fterfirst #1#2{#2#1}
+\def\c@amelhyph #1{%
+ \ifthenelse{\equal{#1}\relax}{}{%  Do nothing if the end has been reached
+   \ifnum`#1<91 \-#1\else#1\fi%     Check whether #1 is an uppercase letter,
+                              %     if so, print \-#1, otherwise #1
+  \expandafter\c@amelhyph%    %     insert \c@amelhyph again.
+}}
+ 
+\makeatother
 
 \newcommand{\diaspec}{Dia\-Spec\xspace}
+\newcommand{\ct}[1]{\texttt{\camelhyph{#1}}}
 \newcommand{\ie}{\emph{i.e.,}}
 \newcommand{\eg}{\emph{e.g.,}}
 \newcommand{\etc}{\emph{etc}}
@@ -55,9 +70,19 @@ CNRS, UMR 6072 GREYC\\ F-14032 Caen, France\\
 
 \usepackage{listings}
 
-\lstset{language=[LaTeX]Tex,%C++,
+\lstdefinelanguage{diaspec}
+{morekeywords={entity, attribute, extends, source, action, controller,
+    context, from, on, void, Integer, Boolean, String, enumeration,
+    structure, indexed, by, as, include, when, get, no, maybe, always,
+    publish, behavior, required, provided, abstract, do, any},%
+  sensitive=true,
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+}
+
+\lstset{
     keywordstyle=\bfseries,
-    basicstyle=\footnotesize\ttfamily,
+    basicstyle=\scriptsize\ttfamily,
     %identifierstyle=\color{NavyBlue},
     commentstyle=\ttfamily,
     stringstyle=\rmfamily,
@@ -79,15 +104,7 @@ CNRS, UMR 6072 GREYC\\ F-14032 Caen, France\\
     %frame=L
 } 
 
-\lstdefinelanguage{diaspec}
-{morekeywords={entity, attribute, extends, source, action, controller,
-    context, from, on, void, Integer, Boolean, String, enumeration,
-    structure, indexed, by, as, include, when, get, no, maybe, always,
-    publish, behavior, required, provided, abstract, do, any},%
-  sensitive=true,
-  morecomment=[l]{//},
-  morecomment=[s]{/*}{*/},
-}
+
 
 \begin{document}
 
@@ -124,9 +141,9 @@ CNRS, UMR 6072 GREYC\\ F-14032 Caen, France\\
 \input{introduction}
 \input{designing}
 \input{implementing}
-\label{sec:discussing}
-\label{sec:related}
-\label{sec:conclusion}
+\input{discussing}
+\input{related}
+\input{conclusion}
 
 \bibliographystyle{plain}
 \bibliography{dslrob}
@@ -136,7 +153,4 @@ CNRS, UMR 6072 GREYC\\ F-14032 Caen, France\\
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: t
-%%% TeX-PDF-mode: t
-%%% coding: utf-8
-%%% ispell-local-dictionary: "english"
 %%% End:
