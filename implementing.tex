@@ -96,6 +96,15 @@ label={listing:light-implem}]%
 
 \subsection{Deploying an application}
 
+Deploying an application requires writing a deployment script in Java.
+To do this, a developer creates a new Java class by sub-classing the
+abstract class \ct{MainDeploy} generated in the programming framework.
+By doing so the developer is required to implement one abstract method
+per operator, to call the \ct{add()} method to register entity
+instances, and to call the \ct{deployAll()} method to trigger the
+deployment. The ROS middleware requires an implementation of the
+\ct{NodeMain} interface. An abstract of the deployment script for the
+case study application is shown in Listing~\ref{listing:deploy}.
 
 \lstinputlisting%
 [float,language=java,%

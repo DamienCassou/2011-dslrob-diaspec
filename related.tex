@@ -1,2 +1,27 @@
 \section{Related Work}
 \label{sec:related}
+
+Several software engineering approaches have been proposed to lower
+the complexity of robotics systems~\cite{Brug07a}.
+
+Numerous middlewares and software frameworks have been proposed to
+support the implementation of robotics applications (\eg{}
+CLARATy~\cite{Claraty}, ROS~\cite{ROS} and Player~\cite{Coll05a}).
+Such approaches attempt to cover as much of the robotics domain as
+possible in a single programming framework. This strategy often leads
+to large APIs, providing little guidance to the developer and
+requiring boilerplate code to customize the programming framework to
+the characteristics of the application. In contrast, a
+\diaspec{}-generated programming framework specifically targets one
+application, limiting the API to methods of interest to the
+developers. Our code generator could potentially target these
+middlewares thus leveraging existing work and completely hiding their
+intricacies from the developer.
+
+
+Component-based software engineering for robotics~\cite{Brug07b} and
+model-driven software engineering for Robotics (e.g., OMG
+RTC~\cite{OMGRTC}, SmartSoft~\cite{Schl09a}). All these approaches
+apply and tailor general-purpose and established principles of
+lowering complexity to robotics needs and come up with domain-specific
+extensions.

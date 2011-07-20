@@ -13,13 +13,6 @@ application where the physical environment is composed of a robot
 (engines, a knowledge base, a software, \etc{}) and the robot's
 neighborhood (the walls, ground, people, \etc{})~\cite{Sicil08a}.
 
-\begin{figure}
-  \centering
-  \includegraphics[width=\linewidth]{diaspec-process}
-  \caption{Overview of the \diaspec{} development process}
-  \label{fig:diaspec-process}
-\end{figure}
-
 \diaspec{} is a design language dedicated to describing SCC
 applications. From such a design description, the \diaspec{} compiler
 produces a dedicated Java programming framework
@@ -34,6 +27,14 @@ the developer to allow him to implement the application logic
 (\textit{bump} in Figure~\ref{fig:diaspec-process}). To implement a
 component, the developer implements these methods in a subclass of
 this abstract class and thus never modifies generated code.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{diaspec-process}
+  \caption{Overview of the \diaspec{} development process}
+  \label{fig:diaspec-process}
+\end{figure}
+
 
 By separating application logic (implemented by the developers) and
 runtime support (generated in the programming framework), \diaspec{}
