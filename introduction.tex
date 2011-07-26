@@ -1,7 +1,7 @@
 \section{Introduction}
 
 A Sense/Compute/Control (SCC) application is one that interacts with
-the physical environment~\cite{Tayl09a}. The SCC architectural pattern
+the environment~\cite{Tayl09a}. The SCC architectural pattern
 guides the description of SCC applications and involves four kinds of
 components, organized into layers~\cite{Cass11a,Edwar09a}: (1)
 \emph{sensors} at the bottom, which obtain information about the
@@ -9,9 +9,12 @@ environment; (2) then \emph{context operators}, which process this
 information; (3) then \emph{control operators}, which use this refined
 information to control (4) \emph{actuators} at the top, which finally
 impact the environment. A robotics application is a kind of SCC
-application where the physical environment is composed of a robot
-(engines, a knowledge base, a software, \etc{}) and the robot's
-neighborhood (the walls, ground, people, \etc{})~\cite{Sicil08a}.
+application where the environment is composed of a robot
+(sensors/actuators/body, control architecture, \etc{}) and the robot's
+neighborhood (the walls, ground, people, \etc{})~\cite{Sicil08a}. As
+noticed by Taylor \etal{}~\cite{Tayl09a}, the Sense/Plan/Act
+architecture~\cite{Sicil08a}, widely used in robotics, closely
+resembles the SCC architectural pattern.
 
 \diaspec{} is a design language dedicated to describing SCC
 applications. From such a design description, the \diaspec{} compiler
@@ -67,3 +70,5 @@ sections~\ref{sec:related} and~\ref{sec:conclusion}.
 %%% TeX-PDF-mode: t
 %%% ispell-local-dictionary: "english"
 %%% End:
+
+% LocalWords:  SCC

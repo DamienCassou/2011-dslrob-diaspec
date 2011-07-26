@@ -1,4 +1,4 @@
-public class Movement extends AbstractMovement {
+public class Motion extends AbstractMotion {
 
   @Override
   public Twist onObstacleDetection(Obstacle obstacle) {

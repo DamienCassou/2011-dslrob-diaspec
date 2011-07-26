@@ -38,10 +38,10 @@ public class Deploy extends MainDeploy
 
   // required by the programming framework
   @Override
-  protected AbstractMovement getMovementInstance() {
+  protected AbstractMotion getMotionInstance() {
     // creates a new instance of a context operator that
     // will be deployed by deployAll()
-    return new Movement();
+    return new Motion();
   }
   [...]
 }

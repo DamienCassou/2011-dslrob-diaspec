@@ -6,6 +6,13 @@ application in \diaspec{} component types. Then we present a case
 study robotics application that we use as an example of how to
 describe a robotics application with \diaspec{}.
 
+In the rest of this paper we are going to take ROS
+\footnote{\url{http://www.ros.org/wiki/}} as the underlying middleware
+for our case study. We believe it is a good choice as ROS is becoming
+a standard within the robotics community. It is important to note
+however that our approach and \diaspec{} are completely independent of
+any middleware.
+
 \subsection{Decomposing}
 
 Designing an application with \diaspec{} requires a decomposition in
@@ -18,7 +25,8 @@ layers. Each layer corresponds to a separate class of components:
   requests. We use the term ``sensor'' both for entities that actively
   retrieve information from the environment, such as system probes,
   and entities that store information previously collected from the
-  environment, such as databases.
+  environment, such as structured information coming from the
+  middleware.
 \item A \emph{context operator} refines (aggregates and interprets)
   the information given by the sensors. Context operators can push
   data to other context operators and to control operators. Context
@@ -36,7 +44,10 @@ application into components.
 In the presence of a previous application developed with \diaspec{},
 it is possible and advisable to reuse as much components as possible.
 Depending on the amount of reused components, this can have a huge
-impact on the application of the other guidelines.
+impact on the application of the other guidelines. It is similarly
+important to reuse as much building blocks as possible from the
+underlying middleware. For example ROS provides high-level components
+and algorithms that are better reused than reimplemented.
 
 \paragraph{Listing capabilities}
 Each robot comes with its own set of capabilities (\eg{} sensing
@@ -116,7 +127,7 @@ of the case study.
 ,label={listing:design}]%
 {code/design.diaspec}
 
-In this listing, the keywords \ct{device}, \ct{context},
+In this listing, the keywords \ct{entity}, \ct{context},
 \ct{controller}, and \ct{behavior} are respectively used to introduce
 a new entity class, a new context operator, a new control operator,
 and a new interaction contract. For this application, we decided to
