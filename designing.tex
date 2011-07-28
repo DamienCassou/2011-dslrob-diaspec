@@ -44,10 +44,12 @@ application into components.
 In the presence of a previous application developed with \diaspec{},
 it is possible and advisable to reuse as much components as possible.
 Depending on the amount of reused components, this can have a huge
-impact on the application of the other guidelines. It is similarly
-important to reuse as much building blocks as possible from the
-underlying middleware. For example ROS provides high-level components
-and algorithms that are better reused than reimplemented.
+impact on the application of the other guidelines.
+% shouldn't talk about middleware reuse here as it is discussed below:
+% It is similarly important to reuse as much building blocks as
+% possible from the underlying middleware. For example ROS provides
+% high-level components and algorithms that are better reused than
+% reimplemented.
 
 \paragraph{Listing capabilities}
 Each robot comes with its own set of capabilities (\eg{} sensing
@@ -65,7 +67,7 @@ actions (\eg{} a mapping capability).
 The next step of the decomposition in components is the identification
 of the main high-level pieces of information required by the
 application. These pieces of information are represented as context
-operators and directly used as input to control operators.
+operators. % and directly used as input to control operators
 
 \paragraph{Decomposing into lower-level pieces}
 Then, lower-level context operators must be identified to act as input
@@ -113,7 +115,47 @@ enough to not be reimplemented).
 \subsection{Case Study}
 
 As a running example, we present an application that is typical of the
-robotics domain.
+robotics domain. In this application, a robot evolves in an unknown
+environment and has two modes: \emph{random} and \emph{discovery}. In
+the random mode, the robot goes straight and when an obstacle is close
+enough turns before going straight again. In the discovery mode, the
+robot goes to unvisited locations with the goal to visit as much as
+possible from the neighborhood. The mode can be changed anytime by an
+operator through an administration graphical interface. In both modes,
+the robot turns on an embedded projector and takes pictures when it is
+in a zone with obstacles.
+
+Let us now discuss the above guidelines in the context of this case
+study.
+
+\paragraph{Reusing existing components}
+We assume no previous \diaspec{} application and thus no \diaspec{}
+component to reuse.
+
+\paragraph{Listing capabilities}
+Our robot comes with a laser scan sensor, a light projector, a camera,
+and a set of wheels. The ROS middleware comes with an
+\emph{exploration} capability that is exactly what we need for the
+robot's discovery mode. From all these capabilities, we identify:
+\begin{itemize}
+\item a laser scan entity with a \ct{ranges} source providing laser
+  ranges from the sensor which can be deactivated when the robot is in
+  discovery mode;\footnote{it is important to note that the
+    application is not going to deactivate the hardware-level sensor
+    (which is used in the two modes) but only the application-level
+    source (which is only used in the random mode).}
+\item a light projector entity that can be activated or deactivated on request;
+\item a camera entity that takes pictures on request;
+\item a wheels entity that can turn or rowl on request;
+\item an exploration entity that provides a parametrized source of
+  structured information;
+\end{itemize}
+
+\paragraph{Identifying main context operators}
+Because the robot has two modes the application needs a context
+operator which can tell which one is the current mode.
+
+
 
 \subsection{Describing with \diaspec{}}
 
