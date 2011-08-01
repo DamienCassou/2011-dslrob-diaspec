@@ -1,23 +1,41 @@
-action OnOff { #\label{design:onoff-b}#
-  #on#();#\label{design:on}#
-  off();#\label{design:off}#
-}#\label{design:onoff-e}#
-
-entity Stoppable {#\label{design:stoppable-b}#
-  action OnOff;
-  attribute isStarted as Boolean;#\label{design:isStarted}#
-}#\label{design:stoppable-e}#
-
-entity Light extends Stoppable {}#\label{design:light}#
-
-entity LaserScan extends Stoppable {#\label{design:laserscan-b}#
-	source ranges as Float[];#\label{design:laserscan-ranges}#
+import Twist as org.ros.message.geometry_msgs.Twist;
+structure Obstacle { isDetected as Boolean;
+                     ranges as Float[]; }
+enumeration RobotMode { RANDOM, EXPLORATION }
+action OnOff {#\label{design:onoff-b}# #on#();#\label{design:on}# off();#\label{design:off}# }#\label{design:onoff-e}#
+entity Light {#\label{design:light-b}# action OnOff; }#\label{design:light-e}#
+entity LaserScan {#\label{design:laserscan-b}#
+  source ranges as Float[];#\label{design:laserscan-ranges}# action OnOff;
 }#\label{design:laserscan-e}#
-
-context Motion as Twist {
+entity Exploration { source twist as Twist; }
+entity ModeSelector { source mode as RobotMode; }
+context ObstacleDetection as Obstacle {
+  source ranges from LaserScan;
+  interaction { when provided ranges from LaserScan 
+                always publish }
+}
+context ObstacleZone as Boolean {
   context ObstacleDetection;
-  behavior {
-    when provided ObstacleDetection;
-    always publish;
-  }
+  interaction { when provided ObstacleDetection 
+                maybe publish }
+}
+context RandomMotion as Twist {
+  context ObstacleDetection;
+  interaction { when provided ObstacleDetection
+                always publish }
+}
+context Motion as Twist {
+  source mode from ModeSelector;
+  context RandomMotion;
+  source twist from Exploration;
+  interaction { when provided mode from ModeSelector
+                no publish }
+  interaction { when provided RandomMotion maybe publish }
+  interaction { when provided twist from Exploration
+                maybe publish }
+}
+controller MotionController {
+  context Motion; action TurnAndRoll on Wheel;
+  interaction { when provided Motion
+                do TurnAndRoll on Wheel }
 }
