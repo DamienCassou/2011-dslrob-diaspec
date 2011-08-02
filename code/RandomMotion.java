@@ -1,13 +1,12 @@
-public class Motion extends AbstractMotion {
+public class RandomMotion extends AbstractRandomMotion {
 
-  @Override
+  @Override // from super class
   public Twist onObstacleDetection(Obstacle obstacle) {
     Twist cmd = new Twist();
-    if (obstacle.getIsDetected()) {
+    if (obstacle.getIsDetected())
       cmd.angular.z = angleVelocity(obstacle.getRanges());
-    } else {
+    else
       cmd.linear.x = new Float(1);
-    }
     return cmd;
   }
 
@@ -17,18 +16,15 @@ public class Motion extends AbstractMotion {
 
   private Float angleVelocity(List<Float> ranges) {
     double midA = 0, midB = 0;
-    // we look to the left and to the right and
-    // decide which ones has more space
-    for (int i = 0; i < middle(ranges); i++) {
+    // we look to the left and to the right and decide
+    // which one has more space
+    for (int i = 0; i < middle(ranges); i++)
       midA += ranges.get(i);
-    }
-    for (int i = middle(ranges); i < ranges.size(); i++) {
+    for (int i = middle(ranges); i < ranges.size(); i++)
       midB += ranges.get(i);
-    }
-    if (midA > midB) {
+    if (midA > midB)
       return new Float(-1.0);
-    } else {
+    else
       return new Float(1.0);
-    }
   }
 }

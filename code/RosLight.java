@@ -1,4 +1,4 @@
-// Implementation of Light from Listing#~\ref{listing:design}# line#~\ref{design:light}#
+// Implementation of Light from Listing#~\ref{listing:design}# line#~\ref{design:light-b}#
 public class RosLight extends AbstractLight {
 
   // A ROS publisher to communicate with the robot
@@ -14,14 +14,12 @@ public class RosLight extends AbstractLight {
   protected void on() throws Exception {
     // update the isStarted attribute from
     // Listing#~\ref{listing:design}# line#~\ref{design:isStarted}#
-    updateIsStarted(true);
     publish(true);
   }
 
   // required by design in Listing#~\ref{listing:design}# line#~\ref{design:off}#
   @Override
   protected void off() throws Exception {
-    updateIsStarted(false);
     publish(false);
   }
 

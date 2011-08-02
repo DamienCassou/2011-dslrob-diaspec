@@ -1,9 +1,9 @@
-import Twist as org.ros.message.geometry_msgs.Twist;
+import Twist as org.ros.message.geometry_msgs.Twist;#\label{design:import}#
 structure Obstacle { isDetected as Boolean;
                      ranges as Float[]; }
 enumeration RobotMode { RANDOM, EXPLORATION }
 action OnOff {#\label{design:onoff-b}# #on#();#\label{design:on}# off();#\label{design:off}# }#\label{design:onoff-e}#
-entity Light {#\label{design:light-b}# action OnOff; }#\label{design:light-e}#
+entity Light {#\label{design:light-b}# action OnOff;#\label{design:light-onoff}# }#\label{design:light-e}#
 entity LaserScan {#\label{design:laserscan-b}#
   source ranges as Float[];#\label{design:laserscan-ranges}# action OnOff;
 }#\label{design:laserscan-e}#
@@ -11,7 +11,7 @@ entity Exploration { source twist as Twist; }
 entity ModeSelector { source mode as RobotMode; }
 context ObstacleDetection as Obstacle {
   source ranges from LaserScan;
-  interaction { when provided ranges from LaserScan 
+  interaction { when provided ranges from LaserScan#\label{design:interaction}#
                 always publish }
 }
 context ObstacleZone as Boolean {

@@ -15,16 +15,15 @@ the application code in subclasses, not in the generated abstract
 classes. This strategy contrasts with generating incomplete source
 code, to be filled by the developer. As a result, in our approach, one
 can change the \diaspec{} description and generate a new programming
-framework without overriding the developer code. The mismatches
+framework without overriding the developer's code. The mismatches
 between the existing code and the new programming framework are
 revealed by the Java compiler. To facilitate the implementation
 process, most Java IDEs are capable of generating class templates
 based on super abstract classes.
 
 In this section, we give an overview of how to implement some parts of
-the case study and present a mapping with the ROS software framework.
-For a more detailed description, we refer to our previous
-works~\cite{Cass09b,Cass11a,Cass11b}.
+the case study. For a more detailed description, we refer to our
+previous works~\cite{Cass09b,Cass11a,Cass11b}.
 
 \subsection{Implementing an operator}
 
@@ -39,20 +38,22 @@ the abstract method with the expected arguments.
 The signature of each abstract method is directly derived from the
 interaction contract: the name of the method is derived from the
 activation condition, the return type is derived from the reaction,
-and the parameters are derived from the activation condition, the data
-requirements and the reaction altogether. 
+and the parameters are derived from the activation condition and the
+reaction.
 
 Listing~\ref{listing:contextop-implem} presents a possible Java
-implementation of the \ct{Movement} context operator. The
+implementation of the \ct{RandomMotion} context operator. The
 \ct{onObstacleDetection} method is declared abstract in the
-\ct{AbstractMovement} super class.
+\ct{AbstractRandomMotion} generated super class.
 
 \lstinputlisting%
 [float,language=java,%
-caption={A developer-supplied Java implementation of the \texttt{Movement}
-  context operator described in Listing~\ref{listing:design}},%
+caption={A developer-supplied Java implementation of the
+  \texttt{Random\-Motion} context operator described in
+  Listing~\ref{listing:design}. The \texttt{Abstract\-Random\-Motion}
+  super class is automatically generated},%
 label={listing:contextop-implem}]%
-{code/Movement.java}
+{code/RandomMotion.java}
 
 Because an operator only manipulates input sources to produce a
 result, its implementation is independent of any robotics software
@@ -76,7 +77,9 @@ instance through the ROS \ct{MessageListener} interface.
 [float,language=java,%
 caption={A developer-supplied Java implementation of the
   \texttt{LaserScan} entity class described in
-  Listing~\ref{listing:design}, line~\ref{design:laserscan-b}},%
+  Listing~\ref{listing:design}, line~\ref{design:laserscan-b}. The
+  \texttt{Abstract\-Laser\-Scan} super class is automatically
+  generated},%
 label={listing:laserscan-implem}]%
 {code/RosLaserScan.java}
 
@@ -90,7 +93,8 @@ the middleware.
 [float,language=java,%
 caption={A developer-supplied Java implementation of the
   \texttt{Light} entity class described in
-  Listing~\ref{listing:design}, line~\ref{design:light}},%
+  Listing~\ref{listing:design}, line~\ref{design:light-b}. The
+  \texttt{Abstract\-Light} super class is automatically generated},%
 label={listing:light-implem}]%
 {code/RosLight.java}
 

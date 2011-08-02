@@ -3,20 +3,20 @@
 
 In this section we first explain how to decompose a robotics
 application in \diaspec{} component types. Then we present a case
-study robotics application that we use as an example of how to
-describe a robotics application with \diaspec{}.
+study that we use as an example of how to describe a robotics
+application with \diaspec{}.
 
-In the rest of this paper we are going to take ROS
-\footnote{\url{http://www.ros.org/wiki/}} as the underlying middleware
-for our case study. We believe it is a good choice as ROS is becoming
-a standard within the robotics community. It is important to note
-however that our approach and \diaspec{} are completely independent of
-any middleware.
+In the rest of this paper we are going to take
+ROS\footnote{\url{http://www.ros.org/wiki/}} as the underlying
+middleware for our case study. We believe it is a good choice as ROS
+is becoming a standard within the robotics community. It is important
+to note however that our approach and \diaspec{} are completely
+independent of any middleware.
 
 \subsection{Decomposing}
 
 Designing an application with \diaspec{} requires a decomposition in
-layers. Each layer corresponds to a separate class of components:
+layers. Each layer corresponds to a separate type of component:
 
 \begin{itemize}
 \item A \emph{sensor} sends information sensed from the environment to
@@ -37,14 +37,14 @@ layers. Each layer corresponds to a separate class of components:
 \item An \emph{actuator} triggers actions on the environment.
 \end{itemize}
 
-The following gives some guidelines to decompose a robotics
-application into components.
+The following details the steps to follow in order to decompose a
+robotics application into these component types.
 
 \paragraph*{Reusing existing components}
 In the presence of a previous application developed with \diaspec{},
 it is possible and advisable to reuse as much components as possible.
 Depending on the amount of reused components, this can have a huge
-impact on the application of the other guidelines.
+impact on the application of the other steps.
 % shouldn't talk about middleware reuse here as it is discussed below:
 % It is similarly important to reuse as much building blocks as
 % possible from the underlying middleware. For example ROS provides
@@ -79,13 +79,11 @@ set of sensor sources.
 
 \paragraph*{Identifying control operators}
 From the high-level context operators, it is then necessary to derive
-a set of control operators that are going to send orders to actuators
-based on this information. Because the code of a control operator can
-not be reused in another part of the application, it is important that
-this code is as simple as possible. If there is opportunity for reuse,
-the code should be moved to a new context operator. Similarly to a
-context operator, a control operator contains a set of interaction
-contracts.
+a set of control operators that are going to send orders to actuators.
+Because the code of a control operator can not be reused in another
+part of the application, it is important that this code is as simple
+as possible. If there is opportunity for reuse, the code should be
+moved to a new context operator. 
 
 \paragraph*{Identifying data types}
 While proceeding with the above steps, it is also necessary to define
@@ -94,15 +92,15 @@ context operators, and parameters of actuator actions. A data type is
 either primitive (\eg{} integer, boolean and float), an enumeration of
 names (\eg{} a luminosity can either be low, normal or high), or a
 structure (\eg{} a coordinate with x and y fields). An important
-question arises in the presence of a high-level middleware
-(such as ROS): should the types of the application be the types
-provided by the middleware or should the application define
-new types. The former solution is easier to use whereas the latter
-provides more decoupling. A general principle is to provide new types
-when their transcription in \diaspec{} is straightforward (\eg{} a
-coordtextlineinate) and to reuse the middleware types otherwise (\eg{}
-ROS defines a ``twist with covariance'' data type that is complex
-enough to not be reimplemented).
+question arises in the presence of a high-level middleware (such as
+ROS): should the types of the application be the types provided by the
+middleware or should the application define new types. The former
+solution is easier to use whereas the latter provides more decoupling.
+A general principle is to provide new types when their transcription
+in \diaspec{} is straightforward (\eg{} a coordinate) and to reuse the
+middleware types otherwise (\eg{} ROS defines a ``twist with
+covariance'' data type that is complex enough to not be
+reimplemented).
 
 \subsection{Case Study}
 
@@ -112,12 +110,12 @@ environment and has two modes: \emph{random} and \emph{exploration}.
 In the random mode, the robot goes straight and when an obstacle is
 close enough turns before going straight again. In the exploration
 mode, the robot goes to unvisited locations with the goal to visit as
-much as possible from the neighborhood. The mode can be changed
-anytime by an operator through a graphical interface. In both modes,
-the robot turns on an embedded projector and takes pictures when it is
-in a zone with obstacles.
+much as possible from the neighborhood. The current mode can be
+changed anytime by an operator through a graphical interface. In both
+modes, the robot turns on an embedded projector and takes pictures
+when it is in a zone with obstacles.
 
-Let us now discuss the above guidelines in the context of this case
+Let us now discuss the above steps in the context of this case
 study (Figure~\ref{fig:diaspec-graph} represents the result).
 
 \begin{figure}
@@ -138,21 +136,19 @@ and a set of wheels. The ROS middleware comes with an
 \emph{exploration} capability that is exactly what we need for the
 robot's exploration mode. From all these capabilities, we identify:
 \begin{itemize}
-\item a \ct{LaserScan} entity with a \ct{ranges} source providing laser
-  ranges from the sensor which can be deactivated when the robot is in
-  exploration mode;\footnote{it is important to note that the
-    application is not going to deactivate the hardware-level sensor
-    (which is used in the two modes) but only the application-level
-    source (which is only used in the random mode).}
-\item a light projector entity that can be activated or deactivated on
-  request;
-\item a \ct{Camera} and \ct{Light} entities that respectively take
-  pictures and enlighten the neighborhood on request;
-\item a \ct{Wheel} entity that can turn or roll on request;
+\item a \ct{LaserScan} entity class with a \ct{ranges} source
+  providing laser ranges from the sensor which can be deactivated when
+  the robot is in exploration mode;\footnote{it is important to note
+    that the application is not going to deactivate the hardware-level
+    sensor (which is used in the two modes) but only the
+    application-level source (which is only used in the random mode).}
+\item A \ct{ModeSelector} entity that provides a graphical interface
+  for the operator to choose the robot's current mode.
 \item an \ct{Exploration} entity that provides a source of twists for
   the robot;
-\item A \ct{ModeSelector} entity that provides a graphical interface
-  for the operator to choose the robot's mode.
+\item a \ct{Light} and \ct{Camera} entities that respectively take
+  pictures and enlighten the neighborhood on request;
+\item a \ct{Wheel} entity that can turn or roll on request;
 \end{itemize}
 
 \paragraph*{Identifying main context operators}
@@ -165,40 +161,41 @@ or not some obstacles are in the neighborhood.
 
 \paragraph*{Decomposing into lower-level pieces}
 The \ct{Motion} context operator produces a twist based on which mode
-is currently selected, and the twist values coming from both modes.
+is currently selected and on the twist values coming from both modes.
 The currently selected mode is directly provided by the
 \ct{ModeSelector} entity. We introduce a \ct{RandomMotion} context
 operator that produces random twists. The twist for the exploration
 mode is directly provided by the \ct{Exploration} entity. Both the
 \ct{ObstacleZone} and \ct{RandomMotion} context operators need the
 information about nearby obstacles. We thus introduce the
-\ct{ObstacleDetection} context operator.
+\ct{ObstacleDetection} context operator to indicate the proximity of
+an obstacle.
 
 \paragraph*{Identifying control operators}
 The \ct{MotionController} control operator takes information from the
 \ct{Motion} context operator and transmit this information to the
 \ct{Wheel} entity. The \ct{ObstacleManager} control operator takes
-information from the \ct{ObstacleZone} context operator to trigger the
-light and take a picture with the camera.
+information from the \ct{ObstacleZone} context operator and triggers the
+light and takes a picture with the camera.
 
 \paragraph*{Idenfiying data types}
 We have already seen that our application uses the notion of twist to
 indicate motion. A twist can be defined as a pair of vector which
-represent the linear and angular velocity. In this case study we
-decide to reuse the \ct{Twsit} data type as provided by ROS. The robot
-current mode is represented as an enumeration of the \ct{RANDOM} and
-\ct{EXPLORATION} names. The \ct{ObstacleDetection} context operator
-provides a boolean indicating if an obstacle is in front of the robot
-as well as a set of ranges as provided by the laser scan giving
-details about the neighborhood.
+represent the linear and angular velocity. The robot current mode is
+represented as an enumeration of the \ct{RANDOM} and \ct{EXPLORATION}
+names. The \ct{ObstacleDetection} context operator provides an
+\ct{Obstacle} data type containing both a boolean to indicate if an
+obstacle is in front of the robot and a set of float numbers (the
+ranges) as provided by the laser scan giving details about the
+neighborhood.
 
 \subsection{Describing with \diaspec{}}
 
 Once the application is decomposed using the different component
 types, the transcription to the \diaspec{} design language is
 straightforward. Listing~\ref{listing:design} gives an excerpt of the
-case study transcription.\footnote{The full case study description and
-  implementation can be found in
+case study transcription.\footnote{The full case study description in
+  \diaspec{} and implementation can be found in
   \url{http://github.com/DamienCassou/diarobot}.}
 
 \lstinputlisting[float,language=diaspec,breakatwhitespace=true%
@@ -209,8 +206,8 @@ case study transcription.\footnote{The full case study description and
 In this listing, the \ct{entity}, \ct{context}, and \ct{controller}
 keywords are respectively used to introduce a new entity class, a new
 context operator, and a new control operator. For this application, we
-decided to reuse the \ct{Twist} data type of the ROS middleware which
-is illustrated by the \ct{import} line.
+decide to reuse the \ct{Twist} data type of the ROS middleware which
+is illustrated in line~\ref{design:import}.
 
 Additionally to the description of an operator's input sources, the
 \diaspec{} language allows each operator to describe a set of
@@ -221,11 +218,20 @@ and a \emph{reaction} indicating what to do as a result of the
 activation condition.\footnote{Previous work~\cite{Cass11a} also
   includes in the tuple a set of \emph{data requirements} indicating
   the additional input sources that can be used for a particular
-  activation condition. This is not used in this case study.}
-The \ct{interaction} keyword is used to introduce an interaction
-contract. For example, the \ct{ObstacleDetection}'s interaction
-contract indicates that this context operator always publishes a data
-when it receives information from the laser scan.
+  activation condition. This is not used in this case study.} The
+\ct{interaction} keyword is used to introduce an interaction contract.
+For example, the \ct{ObstacleDetection}'s interaction contract
+(Listing~\ref{listing:design}, line~\ref{design:interaction})
+indicates that this context operator always publishes a data when it
+receives information from the laser scan.
+
+In this section we saw how to design a robotics application using
+the SCC architectural pattern and the \diaspec{} design language. Both
+the pattern and the language help decomposing an application in well
+defined components. Both make it easy to reuse as much as possible
+from the underlying middleware and existing applications. In the next
+section we discuss how to implement a robotics application with our
+approach.
 
 %%% Local Variables:
 %%% mode: latex

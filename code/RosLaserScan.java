@@ -2,23 +2,25 @@
 public class RosLaserScan extends AbstractLaserScan
                    implements MessageListener<LaserScan> {
 
-  // required by design in Listing#~\ref{listing:design}# line#~\ref{design:on}#
-  @Override
+  private boolean isStarted = false;
+
+  // required by design in Listing#~\ref{listing:design}# line#~\ref{design:on}# and line#~\ref{design:light-onoff}#
+  @Override // from super class
   protected void on() throws Exception {
-    updateIsStarted(true);
+    isStarted = true;
   }
 
-  // required by design in Listing#~\ref{listing:design}# line#~\ref{design:off}#
-  @Override
+  // required by design in Listing#~\ref{listing:design}# line#~\ref{design:on}# and line#~\ref{design:light-onoff}#
+  @Override // from super class
   protected void off() throws Exception {
-    updateIsStarted(false);
+    isStarted = false;
   }
 
   // triggered when ROS publishes a LaserScan message
-  @Override
+  @Override // from ROS MessageListener
   public void onNewMessage(LaserScan message) {
     float[] ranges = message.ranges;
-    if (getIsStarted()) {
+    if (isStarted) {
       // sends the list of floats to subscribed
       // context operators through the source defined
       // in Listing#~\ref{listing:design}# line#~\ref{design:laserscan-ranges}#
@@ -27,11 +29,6 @@ public class RosLaserScan extends AbstractLaserScan
   }
 
   private List<Float> convert(float[] ranges) {
-    List<Float> newRanges;
-    newRanges = new ArrayList<Float>(ranges.length);
-    for (float range : ranges) {
-      newRanges.add(range);
-    }
-    return newRanges;
+    // converts a float[] to a List<Float>
   }
 }
