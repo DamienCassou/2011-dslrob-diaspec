@@ -6,9 +6,9 @@ public class Deploy extends MainDeploy
   private Node node;
 
   // starting point defined by ROS
-  @Override
+  @Override // from ROS NodeMain
   public void main(NodeConfiguration configuration) {
-    // creation of a ROS node
+    // creates a ROS node
     node = new DefaultNode("laser_cmd", configuration);
     addLaserScan();
     addLight();
@@ -17,17 +17,16 @@ public class Deploy extends MainDeploy
   }
 
   private void addLaserScan() {
-    RosLaserScan laserScan = new RosLaserScan();
+    RosLaserScan scan = new RosLaserScan();
     // asks ROS to send laser scan messages to laserScan
     node.createSubscriber("/ATRV/Sick", 
-			  "sensor_msgs/LaserScan",
-			  laserScan);
+			  "sensor_msgs/LaserScan", scan);
     // schedules for deployment
     add(laserScan);
   }
 
   private void addLight() {
-    // allows the application to send messages to the ROS
+    // allows the application to send messages to ROS
     Publisher<Bool> rosPublisher;
     rosPublisher = node.createPublisher("/ATRV/LightAct",
 					"std_msgs/Bool");
@@ -36,12 +35,11 @@ public class Deploy extends MainDeploy
     add(lightPublisher);
   }
 
-  // required by the programming framework
-  @Override
-  protected AbstractMotion getMotionInstance() {
+  // automatically called by the programming framework
+  @Override // from super class
+  protected AbstractRandomMotion createRandomMotion() {
     // creates a new instance of a context operator that
     // will be deployed by deployAll()
-    return new Motion();
+    return new RandomMotion();
   }
-  [...]
 }

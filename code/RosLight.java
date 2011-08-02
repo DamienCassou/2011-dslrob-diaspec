@@ -10,15 +10,13 @@ public class RosLight extends AbstractLight {
   }
 
   // required by design in Listing#~\ref{listing:design}# line#~\ref{design:on}#
-  @Override
+  @Override // from super class
   protected void on() throws Exception {
-    // update the isStarted attribute from
-    // Listing#~\ref{listing:design}# line#~\ref{design:isStarted}#
     publish(true);
   }
 
   // required by design in Listing#~\ref{listing:design}# line#~\ref{design:off}#
-  @Override
+  @Override // from super class
   protected void off() throws Exception {
     publish(false);
   }
@@ -28,8 +26,7 @@ public class RosLight extends AbstractLight {
     // converts the Java type boolean to the ROS type BOOL
     Bool bool = new Bool();
     bool.data = val;
-    // ask the robot to trigger its light projector
+    // asks the robot to trigger its light projector
     publisher.publish(bool);
   }
-
 }
