@@ -1,3 +1,4 @@
+// Implementation of RandomMotion from Listing#~\ref{listing:design}# line#~\ref{design:randommotion-b}#
 public class RandomMotion extends AbstractRandomMotion {
 
   @Override // from super class

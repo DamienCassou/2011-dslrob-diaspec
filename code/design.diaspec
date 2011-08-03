@@ -19,7 +19,7 @@ context ObstacleZone as Boolean {
   interaction { when provided ObstacleDetection 
                 maybe publish }
 }
-context RandomMotion as Twist {
+context RandomMotion as Twist {#\label{design:randommotion-b}#
   context ObstacleDetection;
   interaction { when provided ObstacleDetection
                 always publish }

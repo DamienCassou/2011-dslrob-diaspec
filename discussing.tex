@@ -1,14 +1,101 @@
 \section{Discussing}
 \label{sec:discussing}
 
-A robotics application is mostly static and often contains only one
-instance of each entity. This makes entity selection and subscription
-mostly useless and they would better be done within the programming
-framework.
+\subsection{\diaspec{} Dynamicity}
 
-Types can be reused from existing software frameworks, such as ROS.
-This makes the whole application description and implementation
-simpler. However, this also tightly couples the whole application to a
-particular software framework, limiting reuse in other contexts.
+\diaspec{} has been created to handle appearing and disappearing
+entities at runtime. This requires additional code that should not be
+necessary in a robotics settings where most, if not all, entities are
+known at deployment time. For example, to receive information from
+entity sources, context operators have to subscribe to each source of
+interest:
+
+\begin{lstlisting}[language=java]
+@Override
+protected void postInitialize() {
+  discoverExplorationForSubscribe.all().subscribeTwist();
+  discoverModeSelectorForSubscribe.all().subscribeMode();
+}
+\end{lstlisting}
+
+This method has to be implemented in the \ct{Motion} context operator
+implementation to let it receive information from the \ct{Exploration}
+and \ct{ModeSelector} entities. This code could be inferred
+automatically from the description of the \ct{Motion} context operator
+and pushed inside the generated programming framework. However, in a
+multi-robots settings, where a robot can discover services provided by
+nearby robots, the \diaspec{} entity discovery and subscription
+mechanisms could be useful.
+
+\subsection{Data Type Reuse}
+
+\diaspec{} allows the definition of new types (structures and
+enumerations) as well as the importation of existing Java types. Very
+often, middleware such as ROS come with their own data types. The
+developer must then choose to reuse the data types coming from the
+middleware or develop new ones. Using these data types requires them
+to be imported in the \diaspec{} description using the \ct{import}
+keyword as is illustrated in Listing~\ref{listing:design},
+line~\ref{design:import}. This can be particularly useful as these
+data types can be complex such as the ROS ``twist with covariance''
+data type. However, choosing reuse of data types from a middleware
+tightly couples the application with this middleware and thus reduces
+potential for reuse of this application. Another solution is to
+developer new data types in \diaspec{}. This makes the application
+independent from any underlying middleware. However, this requires
+conversion code at the boundaries of the application where
+communication with the middleware is required. For example, it could
+be possible to define the \ct{Twist} data type within the design with
+some code like this:
+
+\begin{lstlisting}[language=diaspec, numbers=none]
+structure Vector3 { x as Float; y as Float; z as Float; }
+structure Twist { linear as Vector3; angular as Vector3; }
+\end{lstlisting}
+
+Then, an implementation of the \ct{Wheel} entity would have to convert
+from the \diaspec{} \ct{Twist} type to the ROS \ct{Twist} type:
+
+\begin{lstlisting}[language=java, numbers=none]
+@Override
+protected void setTwist(Twist twist) throws Exception {
+  publisher.publish(convert(twist));
+}
+private org.ros.message.geometry_msgs.Twist
+                                   convert(Twist twist) {
+  org.ros.message.geometry_msgs.Twist rosTwist;
+  rosTwist = new org.ros.message.geometry_msgs.Twist();
+  rosTwist.angular = convert(twist.getAngular());
+  rosTwist.linear = convert(twist.getLinear());
+  return rosTwist;
+}
+private org.ros.message.geometry_msgs.Vector3
+                            convert(Vector3 vector) {...}
+\end{lstlisting}
+
+This solution makes the code harder to read. Moreover, similar code
+has to be duplicated everywhere in the application where a conversion
+is required. An intermediate solution is to develop new data types in
+Java. This solution can embed required conversions in the data type
+itself to avoid duplication. The resulting code is still harder to
+read than the first one however.
+
+\subsection{Decomposition grain}
+
+Following the SCC architectural pattern and the steps proposed in
+Section~\ref{sec:designing} often results in very fine grained
+components promoting reuse. It is however important that the developer
+pays attention not to create too fine grained components which would
+make the runtime behavior harder to understand and debug. Indeed,
+because the generated programming framework handles the interactions
+between the components, debugging very fine grained components
+requires stepping into the generated programming framework. This is
+both cumbersome and should not be needed. A possible addition to
+\diaspec{} could involve a dedicated debugger which would let the
+developer debug his application without stepping into the generated
+programming framework.
+
 
 % Hiding the dependency to ROS by creating a new diaspec backend
+
+% LocalWords:  SCC hoc
