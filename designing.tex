@@ -118,6 +118,8 @@ changed anytime by an operator through a graphical interface. In both
 modes, the robot turns on an embedded projector and takes pictures
 when it is in a zone with obstacles.
 
+\serge{Il faut préciser l'algorithme d'exploration}
+
 Let us now discuss the above steps in the context of this case
 study (Figure~\ref{fig:diaspec-graph} represents the result).
 
@@ -134,7 +136,7 @@ We assume no previous \diaspec{} application and thus no \diaspec{}
 component to reuse.
 
 \paragraph*{Listing capabilities}
-Our robot comes with a laser scan sensor, a light projector, a camera,
+Our robot comes with a range-finder type laser scanner, a light projector, a camera,
 and a set of wheels. The ROS middleware comes with an
 \emph{exploration} capability that is exactly what we need for the
 robot's exploration mode. From all these capabilities, we identify:
