@@ -137,8 +137,7 @@ component to reuse.
 
 \paragraph*{Listing capabilities}
 Our robot comes with a range-finder type laser scanner, a light projector, a camera,
-and a set of wheels. The ROS middleware comes with an
-\emph{exploration} capability that is exactly what we need for the
+and a set of wheels. We are reusing \emph{exploration} capability developed by Bosch robotics research team\footnote{\url{http://www.ros.org/wiki/explore}} and available as a ROS node. That is exactly what we need for the
 robot's exploration mode. From all these capabilities, we identify:
 \begin{itemize}
 \item a \ct{LaserScan} entity class with a \ct{ranges} source
