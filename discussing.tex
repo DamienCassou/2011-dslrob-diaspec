@@ -1,6 +1,30 @@
 \section{Discussing}
 \label{sec:discussing}
 
+\diaspec{} decomposes the development of an application into two well
+defined stages: a design stage for which \diaspec{} provides a
+domain-specific design language and an implementation stage for which
+\diaspec{} provides a design-specific programming framework. With the
+design language and SCC architectural pattern, a developer is guided
+in creating components with a single responsibility each, thus
+enhancing reuse. An application design also explicits interactions
+between components making the runtime behavior easier to understand.
+With the programming framework dedicated to the design, a developer is
+guided in creating an implementation for each components.
+Indeed, the generated programming framework takes care of the control
+loop of the application as well as all interactions between the
+components. As a result, a developer can focus on implementing the
+high-level application logic, letting the framework handle the
+details. Moreover, the programming framework provides all necessary
+pieces of required information directly as parameters to the abstract
+methods. This reduces the amount of documentation required to start
+using the programming framework.
+
+In the previous sections we saw that \diaspec{} can be used to design,
+implement and deploy a robotics application for a widely used
+middleware. In the following we discuss various problems we have met
+while applying a\diaspec{} in a robotics setting.
+
 \subsection{\diaspec{} Dynamicity}
 
 \diaspec{} has been created to handle appearing and disappearing
@@ -18,14 +42,19 @@ protected void postInitialize() {
 }
 \end{lstlisting}
 
-This method has to be implemented in the \ct{Motion} context operator
-implementation to let it receive information from the \ct{Exploration}
-and \ct{ModeSelector} entities. This code could be inferred
-automatically from the description of the \ct{Motion} context operator
-and pushed inside the generated programming framework. However, in a
-multi-robots settings, where a robot can discover services provided by
-nearby robots, the \diaspec{} entity discovery and subscription
-mechanisms could be useful.
+This method has to be implemented in the \ct{Motion} Java class (for
+the \ct{Motion} context operator) to let it receive information from
+the \ct{Exploration} and \ct{ModeSelector} entities. This code could
+be inferred automatically from the description of the \ct{Motion}
+context operator and pushed inside the generated programming
+framework. However, in a multi-robots settings, where a robot can
+discover services provided by nearby robots, the \diaspec{} entity
+discovery and subscription mechanisms still could be useful. The
+\diaspec{} design language could be extended to let a developer
+declare which entities are known at deployment time and which ones
+should be discovered at runtime. The compiler could then leverage this
+additional information to generate the necessary code in the
+programming framework.
 
 \subsection{Data Type Reuse}
 
@@ -33,20 +62,20 @@ mechanisms could be useful.
 enumerations) as well as the importation of existing Java types. Very
 often, middleware such as ROS come with their own data types. The
 developer must then choose to reuse the data types coming from the
-middleware or develop new ones. Using these data types requires them
-to be imported in the \diaspec{} description using the \ct{import}
-keyword as is illustrated in Listing~\ref{listing:design},
-line~\ref{design:import}. This can be particularly useful as these
-data types can be complex such as the ROS ``twist with covariance''
-data type. However, choosing reuse of data types from a middleware
-tightly couples the application with this middleware and thus reduces
-potential for reuse of this application. Another solution is to
-developer new data types in \diaspec{}. This makes the application
-independent from any underlying middleware. However, this requires
-conversion code at the boundaries of the application where
-communication with the middleware is required. For example, it could
-be possible to define the \ct{Twist} data type within the design with
-some code like this:
+middleware or define new ones. Using the middleware data types can be
+particularly useful as these data types can be complex such as the ROS
+``twist'' data type. This is the solution we use for the case study
+and the \ct{Twist} data type as is illustrated by the use of the
+\ct{import} keyword in Listing~\ref{listing:design},
+line~\ref{design:import}. However, choosing reuse of data types from a
+middleware tightly couples the application with this middleware and
+thus prevents potential for reuse of this application with other
+middleware. Another solution is to develop new data types in
+\diaspec{}. This makes the application independent from any underlying
+middleware. However, this requires conversion code at the boundaries
+of the application where communication with the middleware is
+required. For example, it could be possible to define the \ct{Twist}
+data type within the design with some code like this:
 
 \begin{lstlisting}[language=diaspec, numbers=none]
 structure Vector3 { x as Float; y as Float; z as Float; }
@@ -73,29 +102,29 @@ private org.ros.message.geometry_msgs.Vector3
                             convert(Vector3 vector) {...}
 \end{lstlisting}
 
-This solution makes the code harder to read. Moreover, similar code
-has to be duplicated everywhere in the application where a conversion
-is required. An intermediate solution is to develop new data types in
-Java. This solution can embed required conversions in the data type
-itself to avoid duplication. The resulting code is still harder to
-read than the first one however.
+This solution makes the code harder to read and maintain. Moreover,
+similar code has to be duplicated everywhere in the application where
+a conversion is required. An intermediate solution is to develop new
+data types in Java. This solution can embed required conversions in
+the data type itself to avoid duplication. The resulting code is still
+harder to read than the first one however.
 
 \subsection{Decomposition grain}
 
-Following the SCC architectural pattern and the steps proposed in
-Section~\ref{sec:designing} often results in very fine grained
-components promoting reuse. It is however important that the developer
-pays attention not to create too fine grained components which would
-make the runtime behavior harder to understand and debug. Indeed,
-because the generated programming framework handles the interactions
-between the components, debugging very fine grained components
-requires stepping into the generated programming framework. This is
-both cumbersome and should not be needed. A possible addition to
-\diaspec{} could involve a dedicated debugger which would let the
-developer debug his application without stepping into the generated
-programming framework.
+During the development of the case study
 
+ Following the SCC architectural pattern and the steps proposed in
+Section~\ref{sec:designing} 
 
-% Hiding the dependency to ROS by creating a new diaspec backend
+often results in fine grained components,
+promoting reuse. It is however important that the developer pays
+attention not to create too fine grained components which would make
+the runtime behavior hard to understand and debug. Indeed, because the
+generated programming framework handles the interactions between the
+components, debugging very fine grained components requires stepping
+often into the generated programming framework. This is cumbersome and
+should not be needed. A possible addition to \diaspec{} could involve
+a dedicated debugger which would let the developer debug his
+application without stepping into the generated programming framework.
 
 % LocalWords:  SCC hoc
