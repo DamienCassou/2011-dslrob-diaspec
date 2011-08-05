@@ -1,3 +1,4 @@
+%!TEX root=dslrob.tex
 \section{Designing a robotics application}
 \label{sec:designing}
 
@@ -61,7 +62,7 @@ actions, an entity class may also have \emph{attributes} to
 characterize its instances (\eg{} resolution, accuracy and status). In
 the presence of a high-level middleware (such as ROS), it can be
 useful to also map capabilities of the middleware into sources and
-actions (\eg{} a mapping capability).
+actions (\eg{} a mapping or a localization capability).
 
 \paragraph*{Identifying main context operators}
 The next step of the decomposition in components is the identification
@@ -103,6 +104,8 @@ covariance'' data type that is complex enough to not be
 reimplemented).
 
 \subsection{Case Study}
+
+\serge{Il faut préciser quelque part le modèle de robot et le type de locomotion.}
 
 As a running example, we present an application that is typical of the
 robotics domain. In this application, a robot evolves in an unknown
