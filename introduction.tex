@@ -17,33 +17,19 @@ noticed by Taylor \etal{}~\cite{Tayl09a}, the Sense/Plan/Act
 architecture~\cite{Sicil08a}, widely used in robotics, closely
 resembles the SCC architectural pattern.
 
-\diaspec{} is a domain-specific design language dedicated to describing SCC
-applications. From such a design description, the \diaspec{} compiler
-produces a dedicated Java programming framework
-(Figure~\ref{fig:diaspec-process}) that is both \emph{prescriptive}
-and \emph{restrictive}: it is prescriptive in the sense that it guides
-the developer, and it is restrictive in the sense that it limits the
-developer to what the design description allows. For each component
-description in the design, the compiler generates an abstract class.
-An abstract method in this class (\emph{hole} in
-Figure~\ref{fig:diaspec-process}) represents code to be provided by
-the developer to allow him to implement the application logic
-(\textit{bump} in Figure~\ref{fig:diaspec-process}). To implement a
-component, the developer implements these methods in a subclass of
-this abstract class and thus never modifies generated code.
+\diaspec{} is a domain-specific design language dedicated to
+describing SCC applications~\cite{Cass09b,Cass11a}. From such a design
+description, the \diaspec{} compiler produces a dedicated Java
+programming framework that is both \emph{prescriptive} and
+\emph{restrictive}: it is prescriptive in the sense that it guides the
+developer, and it is restrictive in the sense that it limits the
+developer to what the design description allows. By separating
+application logic (implemented by the developers) and runtime support
+(generated in the programming framework), \diaspec{} facilitates the
+design, implementation and evolution of SCC applications.
 
-\begin{figure}
-  \centering
-  \includegraphics[width=\linewidth]{diaspec-process}
-  \caption{Overview of the \diaspec{} development process}
-  \label{fig:diaspec-process}
-\end{figure}
-
-
-By separating application logic (implemented by the developers) and
-runtime support (generated in the programming framework), \diaspec{}
-facilitates the design, implementation and evolution of SCC
-applications. 
+\damien{Talk about problems in the robotics domain: ad-hoc solutions,
+  hard to reuse, hard to adapt to new environments...}
 
 \subsection*{Contributions}
 
@@ -52,7 +38,7 @@ Our contributions are as follows:
 \begin{itemize}
 \item \emph{A report} on an experiment of designing and implementing a
   standard robotics application in the SCC architectural pattern with
-  the \diaspec{} domain-specific language
+  the \diaspec{} domain-specific design language and framework
   (Sections~\ref{sec:designing} and~\ref{sec:implementing}). This
   report includes detailed instructions and guidelines to allow
   further experiments.

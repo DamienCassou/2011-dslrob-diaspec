@@ -5,10 +5,20 @@
 
 The \diaspec{} compiler generates a programming framework with respect
 to a set of declarations for entity classes, context operators and
-control operators. For each component description (entity or operator)
-the compiler generates an abstract class. The abstract methods in this
-class represent code to be provided by the developer, to allow him to
-program the application logic (\eg{} to trigger an entity action). 
+control operators (Figure~\ref{fig:diaspec-process}). For each
+component description (entity or operator) the compiler generates an
+abstract class. The abstract methods in this class represent code to
+be provided by the developer (\emph{hole} in
+Figure~\ref{fig:diaspec-process}), to allow him to program the
+application logic (\eg{} to trigger an entity action) (\textit{bump}
+in Figure~\ref{fig:diaspec-process}).
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\linewidth]{diaspec-process}
+  \caption{Overview of the \diaspec{} development process}
+  \label{fig:diaspec-process}
+\end{figure}
 
 Implementing a \diaspec{} component is done by \textit{sub-classing}
 the corresponding generated abstract class. In doing so, the developer
