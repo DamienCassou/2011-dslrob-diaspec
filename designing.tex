@@ -131,8 +131,18 @@ We assume no previous \diaspec{} application and thus no \diaspec{}
 component to reuse.
 
 \paragraph*{Listing capabilities}
-Our robot comes with a range-finder type laser scanner, a light projector, a camera,
-and a set of wheels. We are reusing \emph{exploration} capability developed by Bosch robotics research team\footnote{\url{http://www.ros.org/wiki/explore}} and available freeky as a ROS node. The exploration algorithm they use is a well-known frontier-based exploration algorithm\footnote{B. Yamauchi. Frontier-based exploration using multiple robots. In Proceeding of the Second International Conference on Autonomous Agents, pages 47–53, 1998.}. In this family of algorithms, the exploration is viewed as a sequence of two steps: a motion toward a location and a new observation of the environment done by the robot at this location. The location is chosen among a set of candidate locations located on the frontier between free known space and unexplored part of the environment. This exploration node is developed on top on the ROS 2D navigation stack, that provide a standard way to extract information from odometry, sensor streams, and to generate a goal pose and outputs safe velocity commands that are sent to a mobile base. That is exactly what we need for the robot's exploration mode. From all these capabilities, we identify:
+Our robot comes with a range-finder type laser scanner, a light
+projector, a camera, and a set of wheels. We are reusing the
+\emph{exploration} capability developed by the Bosch robotics research
+group.\footnote{\url{http://www.ros.org/wiki/explore}} This capability
+is based on a well-known frontier-based exploration
+algorithm~\cite{Yamau98a}. In this algorithm the exploration is
+composed of two steps: a motion toward a location and a new
+observation of the environment at this location. The location is
+chosen among a set of candidate locations on the frontier between
+explored and unexplored space. This capability is exactly what we need
+for the robot's exploration mode. From all these capabilities, we
+identify:
 \begin{itemize}
 \item a \ct{LaserScan} entity class with a \ct{ranges} source
   providing laser ranges from the sensor which can be deactivated when
