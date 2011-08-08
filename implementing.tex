@@ -133,7 +133,12 @@ label={listing:deploy}]%
 \begin{figure}
   \centering
  \includegraphics[width=1\linewidth]{capture}
-  \caption{Screenshot of a simulation of the case study}
+ \caption{Screenshot of a simulation of the case study. On the left, a
+   window displays the standard rviz visualization tool presenting the
+   neighborhood visited by the robot in exploration mode. On the
+   top-right, a button allows an operator to change the current mode
+   of the robot. On the bottom-right, a window displays an instance of
+   the Stage simulation engine}
 \label{fig:diaspec-simulation}
 \end{figure}
 
@@ -144,4 +149,7 @@ the development easy by passing everything the developer needs as a
 parameter to abstract methods. In the next section we discuss the
 benefits and problems of using \diaspec{} in a robotics setting.
 
-Figure~\ref{fig:diaspec-simulation}  presents a running simulation of our case study, where you can see ROS sensors visualization tool rivz on the left, a Stage simulation engine instance on the right and the button to switch between exploration and random mode on the top. The code generated is completely integrated in the ROS middleware and the execution can be analyzed by the tools provided by ROS.
+Figure~\ref{fig:diaspec-simulation} presents a running simulation of
+our case study. The code generated is completely integrated in the ROS
+middleware and the execution can be analyzed by the tools provided by
+ROS.

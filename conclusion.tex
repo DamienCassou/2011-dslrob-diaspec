@@ -3,8 +3,28 @@
 \section{Conclusions and future works}
 \label{sec:conclusion}
 
-We propose to use \diaspec{}, a domain-specific design language, designed at the beginning for pervasive applications, in the new context of robotics applications. We show how this language allow the developers to decompose an application in finer grains by following the SCC architectural pattern.
-Developing a quite complex application shows the benefits of such an approach in terms of reusing existing software and lowering the burden of the complexity for the developers. Our experiment give us also some ideas on how we could adapt \diaspec{} to the robotics specific concerns.
+In this paper, we have proposed to use \diaspec{}, a domain-specific
+design language for Sense/Compute/Control applications, in a robotics
+setting. We have shown how this language allows a developer to
+structure an application in fine-grained and reusable components by
+following the SCC architectural pattern. Developing a complex
+application shows the benefits of such an approach in terms of reusing
+existing software and lowering complexity for the developer. We have
+also highlighted various problems we have met during the development
+of a standard robotics application.
 
-To be able to adapt execution at runtime is a key issue in software engineering for robotics. One possible change in the execution context is the use of robots with different capabilities and resources. The same missions can be performed differently (reactively or in a more deliberative way) according to robots resources. Software architecture should be adapted statically between two robotics deployments.
-But supporting static adaptation is not enough for mobile robots. Autonomous robots need to dynamically adapt to resource evolutions (failures, environment, ...) while performing their tasks. \emph{Resource-adaptive architectures} allow addressing dynamic adaptations. However, such architectures are ad hoc solutions that can not be reused and scaled. Therefore, an ideal robot control architecture should be \emph{resource-adapting}, i.e architecture that explicitly manage and represent resources \footnote{N. Bouraqadi and S. Stinckwich. Towards an adaptive robot control architecture. In 2nd Workshop on "Control Architectures of Robots: from models to execution on distributed control architectures”, pages 135–149, Paris, May 2007.}. The main perspective of this work is to introduce such dynamic variabilites in \diaspec{}.
+Being able to adapt a robotics system to different capabilities and
+resources is a key issue in software engineering for robotics. For
+example, two similar missions can be performed differently with
+different resources on the robot. Our approach facilitates changes to
+a robotics system by making explicit the software components and their
+interactions. However supporting static adaptation is not enough in a
+robotics setting as robots need to dynamically adapt to resource
+evolutions (\eg{} failures and environment) while performing their
+tasks. \emph{Resource-adaptive architectures} address dynamic
+adaptations. However, such architectures are ad hoc solutions that can
+not be reused and scaled. Therefore, an ideal robot control
+architecture should be \emph{resource-adapting}, \ie{} an architecture
+that explicitly manages and represents resources~\cite{Bour07a}. The
+main perspective of this work is to introduce such dynamic variability
+inside \diaspec{}.

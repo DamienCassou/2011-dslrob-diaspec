@@ -4,7 +4,7 @@
 \label{sec:related}
 
 Several software engineering approaches have been proposed to lower
-the complexity of robotics systems~\cite{Brug07a}. Among them we can cite:
+the complexity of robotics systems~\cite{Brug07a}.
 
 \paragraph*{Middleware and Software Frameworks}
 
@@ -24,11 +24,19 @@ intricacies from the developer.
 
 \paragraph*{Component-Based and Model-Driven Software Engineering}
 
-Component-Based Software Engineering for robotics~\cite{Brug07b} and
-Model-Driven Engineering for Robotics (\eg{} OMG RTC~\cite{OMGRTC},
-SmartSoft~\cite{Schl09a}) are approaches that apply and tailor
-general-purpose and established principles of lowering complexity to
-robotics needs and come up with domain-specific extensions.
+Component-Based Software Engineering for robotics
+(\eg{}~\cite{Brug07b}) and Model-Driven Engineering for robotics
+(\eg{} OMG RTC~\cite{OMGRTC}, SmartSoft~\cite{Schl09a}) relies on
+general-purpose notations such as UML to model domain-specific
+concerns. By using general-purpose and established notations, these
+approaches leverage existing knowledge from developers and existing
+tools. Even though such approaches propose a conceptual framework for
+developing robotics applications, they only provide the user with
+generic tools. For example, these approaches require developers to
+directly manipulate UML diagrams, which become ``enormous, ambiguous
+and unwieldy''~\cite{Picek08a}. In contrast, \diaspec{} abstracts away
+such technologies, limiting the amount of expertise required from the
+developers.
 
 \paragraph*{Domain-Specific Languages}
 
@@ -36,22 +44,20 @@ robotics needs and come up with domain-specific extensions.
 state machines for building complex robot behavior from primitive
 ones~\cite{Boren10a}. \emph{Smach} is tightly coupled with ROS, allows
 only static compositions of behavior and can not adapt compositions to
-new situations during execution.
-
-SmartTCL (Smart Task Coordination Language) is an extension of
-Common Lisp that is used to do on line dynamic reconfiguration of the
-software components involved in a robot~\cite{Stec11a}: knowledge
-bases, simulation engines, symbolic task planners, models and
-low-level hardware. At design time, the developer defines execution
-variants that robot operates at runtime. In order to lower robotics
-inherent complexity, analysis and simulation tools could also be used
-at runtime to determine pending execution steps with specific
-parametrisation before the robot effectively execute them.
-
-Unlike these DSLs, \diaspec{} allows a natural decomposition of
-applications according to the SCC architectural pattern, guiding the
-work of the developer. Compared to SmartTCL \diaspec{} lacks the
-ability to recompose the components at runtime.
+new situations during execution. SmartTCL (Smart Task Coordination
+Language) is an extension of Common Lisp that is used to do on line
+dynamic reconfiguration of the software components involved in a
+robot~\cite{Stec11a}: knowledge bases, simulation engines, symbolic
+task planners, models and low-level hardware. At design time, the
+developer defines execution variants that robot operates at runtime.
+In order to lower robotics inherent complexity, analysis and
+simulation tools could also be used at runtime to determine pending
+execution steps with specific parametrisation before the robot
+effectively execute them. Unlike these DSLs, \diaspec{} allows a
+natural decomposition of applications according to the SCC
+architectural pattern, guiding the work of the developer. Compared to
+SmartTCL \diaspec{} lacks the ability to recompose the components at
+runtime.
 
 % Add to reference: David Kortenkamp, Reid Simmons, Chapter 8 - Robotic
 % Systems Architectures and Programming, Handbook of Robotics, Springer
