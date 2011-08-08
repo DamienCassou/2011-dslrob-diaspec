@@ -27,9 +27,9 @@ apply and tailor general-purpose and established principles of
 lowering complexity to robotics needs and come up with domain-specific
 extensions.
 
-Domain-specific languages for robotics (e.g Smach~\footnote{\url{http://www.ros.org/wiki/smach} Reference to add: J. Boren and S. Cousins, “The SMACH High-Level Executive [ROS News],” IEEE RAM, vol. 17, no. 4, pp. 18–20, 2010. }, SmartTCL~\footnote{Reference to add: Andreas Steck and Christian Schlegel, "Managing Execution Variants in Task Coordination by Exploiting Design-Time Models at Run-Time", in Proc. IEEE/RSJ Int. Conf. on Intelligent Robots and Systems (IROS), San Francisco, California, USA, September 2011. (to appear)}, ...).
+Domain-specific languages for the orchestration of robotics component software (e.g Smach~\footnote{\url{http://www.ros.org/wiki/smach} Reference to add: J. Boren and S. Cousins, “The SMACH High-Level Executive [ROS News],” IEEE RAM, vol. 17, no. 4, pp. 18–20, 2010. }, SmartTCL~\footnote{Reference to add: Andreas Steck and Christian Schlegel, "Managing Execution Variants in Task Coordination by Exploiting Design-Time Models at Run-Time", in Proc. IEEE/RSJ Int. Conf. on Intelligent Robots and Systems (IROS), San Francisco, California, USA, September 2011. (to appear)}, ...).
 
-Smach is a Python embedded DSL based on hierarchical concurrent state machines for composing complex robot behaviors from primitive ones.
+Smach is a Python embedded DSL based on hierarchical concurrent state machines for composing complex robot behaviors from primitive ones. Smach is tighly coupled with ROS.
 
 SmartTCL (Smart Task Coordination Language) is an extension of CommonLisp that is used to do online dynamic reconfiguration of the software components involved in a robot: knowledge bases, simulation engines, symbolic task planners, models and low-level hardware. At design time, the developer defines execution variants that robot operates at runtime. In order to lower robotics inherent complexity, analysis and simulation tools could also be used at runtime to determine pending execution steps with specific parametrisation before the robot effectively execute them.
 
