@@ -6,32 +6,53 @@
 Several software engineering approaches have been proposed to lower
 the complexity of robotics systems~\cite{Brug07a}. Among them we can cite:
 
-\begin{enumerate}
-\item {\bf Numerous middlewares and software frameworks} have been proposed to
+\paragraph*{Middleware and Software Frameworks}
+
+Numerous middleware and software frameworks have been proposed to
 support the implementation of robotics applications (\eg{}
-CLARATy~\cite{Claraty}, ROS~\cite{ROS} and Player/Stage~\cite{Coll05a}).
-Such approaches attempt to cover as much of the robotics domain as
-possible in a single programming framework. This strategy often leads
-to large APIs, providing little guidance to the developer and
-requiring boilerplate code to customize the programming framework to
-the characteristics of the application. In contrast, a
-\diaspec{}-generated programming framework specifically targets one
-application, limiting the API to methods of interest to the
-developers. Our code generator could potentially target these
-middlewares thus leveraging existing work and completely hiding their
+CLARATy~\cite{Claraty}, ROS~\cite{ROS} and
+Player/Stage~\cite{Coll05a}). Such approaches attempt to cover as much
+of the robotics domain as possible in a single programming framework.
+This strategy often leads to large APIs, providing little guidance to
+the developer and requiring boilerplate code to customize the
+programming framework to the characteristics of the application. In
+contrast, a \diaspec{}-generated programming framework specifically
+targets one application, limiting the API to methods of interest to
+the developers. Our code generator could potentially target these
+middleware thus leveraging existing work and completely hiding their
 intricacies from the developer.
 
-\item {\bf Component-based software engineering for robotics~\cite{Brug07b} and
-model-driven software engineering for Robotics} (e.g., OMG
-RTC~\cite{OMGRTC}, SmartSoft~\cite{Schl09a}). All these approaches
-apply and tailor general-purpose and established principles of
-lowering complexity to robotics needs and come up with domain-specific
-extensions.
+\paragraph*{Component-Based and Model-Driven Software Engineering}
 
-\item {\bf Domain-specific languages for the orchestration of robotics component software} (e.g \emph{Smach}~\cite{Boren10a}, \emph{SmartTCL}~\cite{Stec11a}). \emph{Smach} is a Python embedded DSL based on hierarchical concurrent state machines for building complex robot behaviors from primitive ones. \emph{Smach} is tightly coupled with ROS. Smach only allow static compositions of behaviors and could not adapt compositions to new situations during execution.
-SmartTCL (Smart Task Coordination Language) is an extension of CommonLisp that is used to do online dynamic reconfiguration of the software components involved in a robot: knowledge bases, simulation engines, symbolic task planners, models and low-level hardware. At design time, the developer defines execution variants that robot operates at runtime. In order to lower robotics inherent complexity, analysis and simulation tools could also be used at runtime to determine pending execution steps with specific parametrisation before the robot effectively execute them.
+Component-Based Software Engineering for robotics~\cite{Brug07b} and
+Model-Driven Engineering for Robotics (\eg{} OMG RTC~\cite{OMGRTC},
+SmartSoft~\cite{Schl09a}) are approaches that apply and tailor
+general-purpose and established principles of lowering complexity to
+robotics needs and come up with domain-specific extensions.
 
-Unlike the two previous DSL, Diaspec allows as we have previously shown a natural decomposition of applications according to the pattern SCC, which will therefore guide the work of the developer. The main lack of Diaspec compared to SmartTCL is that it does not allow a dynamic recomposition of software components at runtime.
+\paragraph*{Domain-Specific Languages}
 
-\end{enumerate}
-Add to reference: David Kortenkamp, Reid Simmons, Chapter 8 - Robotic Systems Architectures and Programming, Handbook of Robotics, Springer Verlag.~\cite{Kort08a}
+\emph{Smach} is a Python embedded DSL based on hierarchical concurrent
+state machines for building complex robot behavior from primitive
+ones~\cite{Boren10a}. \emph{Smach} is tightly coupled with ROS, allows
+only static compositions of behavior and can not adapt compositions to
+new situations during execution.
+
+SmartTCL (Smart Task Coordination Language) is an extension of
+Common Lisp that is used to do on line dynamic reconfiguration of the
+software components involved in a robot~\cite{Stec11a}: knowledge
+bases, simulation engines, symbolic task planners, models and
+low-level hardware. At design time, the developer defines execution
+variants that robot operates at runtime. In order to lower robotics
+inherent complexity, analysis and simulation tools could also be used
+at runtime to determine pending execution steps with specific
+parametrisation before the robot effectively execute them.
+
+Unlike these DSLs, \diaspec{} allows a natural decomposition of
+applications according to the SCC architectural pattern, guiding the
+work of the developer. Compared to SmartTCL \diaspec{} lacks the
+ability to recompose the components at runtime.
+
+% Add to reference: David Kortenkamp, Reid Simmons, Chapter 8 - Robotic
+% Systems Architectures and Programming, Handbook of Robotics, Springer
+% Verlag.~\cite{Kort08a}
