@@ -1,0 +1,40 @@
+=== For future work ===
+
+> I believe that the simulated example, although appropriate, might be
+> considered a bit too simplistic, esp. given the typical examples
+> tackled these days by the proponents of software frameworks (e.g.,
+> mobile manipulation).
+
+> strictly adhering to the Sense/Compute/Control framework might limit
+> the kind of controllers which can be developed with a
+> DiaSpec-generated programming environment: for instance,
+> behavior-based controllers apparently seem to be outside its scope
+> (although looking more closely there are of ways to implement them,
+> e.g. through "pass-through" operators to be activated depending upon
+> the active behavior).
+
+Serge: je pense qu'il oppose SCC avec des approches que l'on appelle
+behavior-based où grosso-modo on empile des couches de comportements
+en // sur les capteurs et on mixe les sorties. c'est une remarque
+interessante. mais je vois pas pourquoi diaspec ne pourrait pas faire
+cela. c'est a creuser en effet.
+
+> could the host language be in principle something other than Java?
+> especially considering the popularity of C++ due to the availability
+> of state-of-the-art numerical libraries and for real-time concerns.
+
+> how would code reuse be encouraged, given the opportunity to heavily
+> customize the generated programming framework through very detailed
+> modeling on the one hand, and the convenience to have very general
+> models to allow for better code reuse on the other?
+
+> The benefits of DiaSpec against the existing related work are
+> not obvious, despite the well written related work section.
+
+> The presented listings are interesting, but I was wondering how
+> would one write them using a different framework.
+
+> A stronger critical on your work would also be useful. Are there
+> some scenario where DiaSpec is not expressive enough?
+
+

@@ -1,0 +1,74 @@
+----------------------- REVIEW 1 ---------------------
+PAPER: 9
+TITLE: Using the DiaSpec design language and compiler to develop robotics systems
+AUTHORS: Damien Cassou, Serge Stinckwich and Pierrick Koch
+
+OVERALL RATING: 2 (accept)
+REVIEWER'S CONFIDENCE: 3 (high)
+
+This paper describes how the DSL DiaSpec is used to generate a focused framework for building robotics applications. Overall, this paper is good and represents an important topic for the workshop. This paper is written well, and has done a good job explaining DiaSpec to a nonuser: i.e. how it works and what its advantages and disadvantages are.
+
+The language about the dynamic capabilities is a bit vague. Is DiaSpec able to handle dynamic changes in robot applications and environments, or is it a feature that is under development? The authors should try to make that clear.
+
+
+----------------------- REVIEW 2 ---------------------
+PAPER: 9
+TITLE: Using the DiaSpec design language and compiler to develop robotics systems
+AUTHORS: Damien Cassou, Serge Stinckwich and Pierrick Koch
+
+OVERALL RATING: 2 (accept)
+REVIEWER'S CONFIDENCE: 3 (high)
+
+The paper proposes an interesting approach to the development of
+software for robotic systems: the dedicated programming framework
+built using DiaSpec and detailed in the paper is less constraining than a DSL,
+but it still provides more guidance than conventional approaches based upon
+the usage of standard languages over middleware/OS facilities.
+This is described by the authors as an approach both prescriptive and
+restrictive, and I believe that the claim is appropriate.
+There is some effort required from the user in terms of identification
+and description the components that some roboticists might not find
+particularly convenient, especially those with a background particularly
+far from software engineering and looking for a solution
+minimizing this kind of effort. However, this is probably an inevitable
+trade-off to gain modularity and better componentization.
+The authors themselves acknowledge a similar issue in Sec.IV-C:
+it could be interesting if they could elaborate further on how
+to possibly get the most appropriate level of decomposition grain
+while at the same time not placing too much of a "modeling burden"
+on users.
+
+Coming to other specific parts which would be interesting to expand
+in the future:
+- I believe that the simulated example, although appropriate,
+might be considered a bit too simplistic, esp. given the typical
+examples tackled these days by the proponents of software frameworks (e.g., mobile manipulation).
+- strictly adhering to the Sense/Compute/Control framework might limit
+the kind of controllers which can be developed with a DiaSpec-generated
+programming environment: for instance, behavior-based controllers
+apparently seem to be outside its scope (although looking more closely
+there are of ways to implement them, e.g. through "pass-through" operators
+to be activated depending upon the active behavior).
+- could the host language be in principle something other than Java?
+especially considering the popularity of C++ due to the availability
+of state-of-the-art numerical libraries and for real-time concerns.
+- how would code reuse be encouraged, given the opportunity to heavily customize
+the generated programming framework through very detailed modeling on the one hand, and the convenience
+to have very general models to allow for better code reuse on the other?
+
+
+----------------------- REVIEW 3 ---------------------
+PAPER: 9
+TITLE: Using the DiaSpec design language and compiler to develop robotics systems
+AUTHORS: Damien Cassou, Serge Stinckwich and Pierrick Koch
+
+OVERALL RATING: 2 (accept)
+REVIEWER'S CONFIDENCE: 3 (high)
+
+I enjoyed reading the paper. The contributions are reasonable and clearly presented.
+The paper is a nice description of DisSpec capabilities. However, the benefits of it against the existing related work are
+not obvious, despite the well written related work section. The presented listings are interesting, but I was wondering
+how would one write them using a different framework. A stronger critical on your work would also be useful. Are there
+some scenario where DisSpec is not expressive enough?
+
+Minor comment: The second sentence of the abstract is definitely too long, making hard to understand it.
