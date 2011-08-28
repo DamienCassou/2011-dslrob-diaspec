@@ -3,7 +3,7 @@
 
 ((java-mode
   (fill-column . 58)
-  (mode . fci)
+  (eval . (fci-mode 1))
   (c-basic-offset . 2))
  (latex-mode
   (ispell-local-dictionary . "english")
