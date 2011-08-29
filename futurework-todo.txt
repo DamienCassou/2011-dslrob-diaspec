@@ -41,6 +41,8 @@ TODO: envoyer des références à Damien.
 Damien: j'aimerai testé un scénario multi robot aussi pour voir si on peut faire de la découverte de service multi robot
 Serge: oui il y a aussi des aspects organisationnels qui peuvent etre interessant pour du multi-robots
 
+Tester diaspec sur un véritable robot (ex. UTEHY rescue robot).
+
 Dynamic adaptations & variability in DiaSpec
 
 Domain-Specific Language debuggers: A possible addition to DiaSpec could involve a dedicated debugger which would let the developer debug his application without stepping into the generated programming framework.
