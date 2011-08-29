@@ -18,6 +18,7 @@ behavior-based où grosso-modo on empile des couches de comportements
 en // sur les capteurs et on mixe les sorties. c'est une remarque
 interessante. mais je vois pas pourquoi diaspec ne pourrait pas faire
 cela. c'est a creuser en effet.
+TODO: envoyer des références à Damien.
 
 > could the host language be in principle something other than Java?
 > especially considering the popularity of C++ due to the availability
@@ -37,4 +38,10 @@ cela. c'est a creuser en effet.
 > A stronger critical on your work would also be useful. Are there
 > some scenario where DiaSpec is not expressive enough?
 
+Damien: j'aimerai testé un scénario multi robot aussi pour voir si on peut faire de la découverte de service multi robot
+Serge: oui il y a aussi des aspects organisationnels qui peuvent etre interessant pour du multi-robots
+
+Dynamic adaptations & variability in DiaSpec
+
+Domain-Specific Language debuggers: A possible addition to DiaSpec could involve a dedicated debugger which would let the developer debug his application without stepping into the generated programming framework.
 
