@@ -45,3 +45,4 @@ Dynamic adaptations & variability in DiaSpec
 
 Domain-Specific Language debuggers: A possible addition to DiaSpec could involve a dedicated debugger which would let the developer debug his application without stepping into the generated programming framework.
 
+Ajouter diarobot dans les dépôts ROS: http://www.ros.org/wiki/Repositories
