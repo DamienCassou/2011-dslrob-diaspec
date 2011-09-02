@@ -24,14 +24,17 @@ made that clearer by rewriting the section "DiaSpec Dynamicity".
 
 add colon, semi-colon, and numbers to decompose the sentence
 
-> re-add the link
-
 > Phoenix in the acknowledgments
 
 done
 
 > remove line numbers in listing when not necessary
 
+done
+
 > check use of the serial comma
 
 > check spelling
+
+> re-add the link
+
