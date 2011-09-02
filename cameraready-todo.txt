@@ -21,3 +21,8 @@
 > Minor comment: The second sentence of the abstract is definitely too
 > long, making hard to understand it.
 
+> re-add the link
+
+> Phoenix in the acknowledgments
+
+done
