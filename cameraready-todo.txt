@@ -5,6 +5,7 @@
 > environments, or is it a feature that is under development? The
 > authors should try to make that clear.
 
+made that clearer by rewriting the section "DiaSpec Dynamicity".
 
 > There is some effort required from the user in terms of
 > identification and description the components that some roboticists
@@ -26,3 +27,9 @@
 > Phoenix in the acknowledgments
 
 done
+
+> remove line numbers in listing when not necessary
+
+> check use of the serial comma
+
+> check spelling

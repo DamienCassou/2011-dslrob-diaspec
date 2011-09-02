@@ -29,14 +29,12 @@ while applying \diaspec{} in a robotics setting.
 
 \subsection{\diaspec{} Dynamicity}
 
-\diaspec{} has been created to handle appearing and disappearing
-entities at runtime. This requires additional code that should not be
-necessary in a robotics settings where most, if not all, entities are
-known at deployment time. For example, to receive information from
-entity sources, context operators have to subscribe to each source of
-interest:
+\diaspec{} is capable of handling appearing and disappearing entities
+at runtime. For example the following code lets the \ct{Motion}
+context operator subscribe to sources of information from the
+\ct{Exploration} and \ct{ModeSelector} entities:
 
-\begin{lstlisting}[language=java]
+\begin{lstlisting}[language=java,numbers=none]
 @Override
 protected void postInitialize() {
   discoverExplorationForSubscribe.all().subscribeTwist();
@@ -45,18 +43,23 @@ protected void postInitialize() {
 \end{lstlisting}
 
 This method has to be implemented in the \ct{Motion} Java class (for
-the \ct{Motion} context operator) to let it receive information from
-the \ct{Exploration} and \ct{ModeSelector} entities. This code could
-be inferred automatically from the description of the \ct{Motion}
-context operator and pushed inside the generated programming
-framework. However, in a multi-robots settings, where a robot can
-discover services provided by nearby robots, the \diaspec{} entity
-discovery and subscription mechanisms still could be useful. The
-\diaspec{} design language could be extended to let a developer
-declare which entities are known at deployment time and which ones
-should be discovered at runtime. The compiler could then leverage this
-additional information to generate the necessary code in the
-programming framework.
+the \ct{Motion} context operator). The programming framework takes
+care of updating the subscription when a new entity appears or an
+existing entity becomes inaccessible. As a result, a new exploration
+mode or a new mode selector can be deployed at runtime. We believe
+that in a robotics settings where most, if not all, entities are known
+at deployment time this additional code is most of the time
+unnecessary. Indeed, this code could potentially be inferred
+automatically from the description of the \ct{Motion} context operator
+and pushed inside the generated programming framework. However, in a
+multi-robots settings, where a robot can discover services provided by
+nearby robots, the \diaspec{} entity discovery and subscription
+mechanisms could still be useful. The \diaspec{} design language could
+be extended to let a developer declare which entities are known at
+deployment time and which ones should be discovered at runtime. The
+compiler could then leverage this additional information to generate
+the necessary code in the programming framework thus reducing the work
+required by the developers.
 
 \subsection{Data Type Reuse}
 
