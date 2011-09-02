@@ -16,7 +16,7 @@
    width="482.11279"
    height="544"
    sodipodi:docname="diaspec-graph.svg"
-   inkscape:export-filename="/home/cassou/Documents/writing/2011-dslrob-diaspec/resources/diaspec-graph.png"
+   inkscape:export-filename="/home/cassou/Documents/writing/dslrob-diaspec/resources/diaspec-graph.png"
    inkscape:export-xdpi="299.79617"
    inkscape:export-ydpi="299.79617">
   <metadata
@@ -27,7 +27,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
