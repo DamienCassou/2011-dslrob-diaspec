@@ -22,6 +22,8 @@ made that clearer by rewriting the section "DiaSpec Dynamicity".
 > Minor comment: The second sentence of the abstract is definitely too
 > long, making hard to understand it.
 
+add colon, semi-colon, and numbers to decompose the sentence
+
 > re-add the link
 
 > Phoenix in the acknowledgments
