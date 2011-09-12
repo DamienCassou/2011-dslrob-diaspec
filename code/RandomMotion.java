@@ -9,8 +9,10 @@ public class RandomMotion extends AbstractRandomMotion {
   public Twist onObstacleDetection(Obstacle obstacle) {
     Twist cmd = new Twist();
     if (obstacle.getIsDetected())
+      // turn
       cmd.angular.z = angleVelocity(obstacle.getRanges());
     else
+      // go straight
       cmd.linear.x = new Float(1);
 
     // value transmitted automatically by the programming
@@ -18,21 +20,21 @@ public class RandomMotion extends AbstractRandomMotion {
     return cmd;
   }
 
-  private int middle(List<Float> ranges) {
-    return ranges.size() / 2;
-  }
-
   private Float angleVelocity(List<Float> ranges) {
-    double midA = 0, midB = 0;
+    double left = 0, right = 0;
     // we look to the left and to the right and decide
-    // which one has more space
+    // which side has more space
     for (int i = 0; i < middle(ranges); i++)
-      midA += ranges.get(i);
+      left += ranges.get(i);
     for (int i = middle(ranges); i < ranges.size(); i++)
-      midB += ranges.get(i);
-    if (midA > midB)
+      right += ranges.get(i);
+    if (left > right)
       return new Float(-1.0);
     else
       return new Float(1.0);
+  }
+
+  private int middle(List<Float> ranges) {
+    return ranges.size() / 2;
   }
 }

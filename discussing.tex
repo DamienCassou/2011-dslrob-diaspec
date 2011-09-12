@@ -12,7 +12,7 @@ in creating components with a single responsibility each, thus
 enhancing reuse. An application design also explicits interactions
 between components making the runtime behavior easier to understand.
 With the programming framework dedicated to the design, a developer is
-guided in creating an implementation for each components.
+guided in creating an implementation for each component.
 Indeed, the generated programming framework takes care of the control
 loop of the application as well as all interactions between the
 components. As a result, a developer can focus on implementing the
@@ -50,7 +50,7 @@ mode or a new mode selector can be deployed at runtime. We believe
 that in a robotics settings where most, if not all, entities are known
 at deployment time this additional code is most of the time
 unnecessary. Indeed, this code could potentially be inferred
-automatically from the description of the \ct{Motion} context operator
+automatically from the declaration of the \ct{Motion} context operator
 and pushed inside the generated programming framework. However, in a
 multi-robots settings, where a robot can discover services provided by
 nearby robots, the \diaspec{} entity discovery and subscription
@@ -59,13 +59,14 @@ be extended to let a developer declare which entities are known at
 deployment time and which ones should be discovered at runtime. The
 compiler could then leverage this additional information to generate
 the necessary code in the programming framework thus reducing the work
-required by the developers.
+required by the developers. We plan to investigate this issue in
+future works.
 
 \subsection{Data Type Reuse}
 
 \diaspec{} allows the definition of new types (structures and
 enumerations) as well as the importation of existing Java types. Very
-often, middleware such as ROS come with their own data types. The
+often, a middleware such as ROS comes with its own data types. The
 developer must then choose to reuse the data types coming from the
 middleware or define new ones. Using the middleware data types can be
 particularly useful as these data types can be complex such as the ROS
@@ -79,8 +80,8 @@ middleware. Another solution is to develop new data types in
 \diaspec{}. This makes the application independent from any underlying
 middleware. However, this requires conversion code at the boundaries
 of the application where communication with the middleware is
-required. For example, it could be possible to define the \ct{Twist}
-data type within the design with some code like this:
+required. For example, it is possible to define the \ct{Twist}
+data type within the design as follows:
 
 \begin{lstlisting}[language=diaspec, numbers=none]
 structure Vector3 { x as Float; y as Float; z as Float; }
@@ -91,10 +92,6 @@ Then, an implementation of the \ct{Wheel} entity would have to convert
 from the \diaspec{} \ct{Twist} type to the ROS \ct{Twist} type:
 
 \begin{lstlisting}[language=java, numbers=none]
-@Override
-protected void setTwist(Twist twist) throws Exception {
-  publisher.publish(convert(twist));
-}
 private org.ros.message.geometry_msgs.Twist
                                    convert(Twist twist) {
   org.ros.message.geometry_msgs.Twist rosTwist;

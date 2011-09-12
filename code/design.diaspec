@@ -6,7 +6,6 @@ action OnOff {#\label{design:onoff-b}# #on#();#\label{design:on}# off();#\label{
 entity Light {#\label{design:light-b}# action OnOff;#\label{design:light-onoff}# }#\label{design:light-e}#
 entity LaserScan {#\label{design:laserscan-b}#
   source ranges as Float[];#\label{design:laserscan-ranges}#
-  action OnOff;#\label{design:laserscan-onoff}#
 }#\label{design:laserscan-e}#
 entity Exploration { source twist as Twist; }
 entity ModeSelector { source mode as RobotMode; }

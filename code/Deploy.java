@@ -20,7 +20,8 @@ public class Deploy extends MainDeploy
   @Override  // from super class
   protected void deployRandomMotions(
                   Adder<AbstractRandomMotion>#~#adder)#~#{
-    // new instance from class in Listing#~\ref{listing:contextop-implem}#
+    // creates a new instance from class in Listing#~\ref{listing:contextop-implem}#
+    // and schedules for deployment
     adder.deploy(new RandomMotion());
   }
 
@@ -28,7 +29,7 @@ public class Deploy extends MainDeploy
   @Override  // from super class
   protected void deployLaserScans(
                      Adder<AbstractLaserScan>#~#adder)#~#{
-    // new instance from class in Listing#~\ref{listing:laserscan-implem}#
+    // creates a new instance from class in Listing#~\ref{listing:laserscan-implem}#
     RosLaserScan scan = new RosLaserScan();
     // asks ROS to send laser scan messages to scan
     node.newSubscriber("/ATRV/Sick",
@@ -45,7 +46,7 @@ public class Deploy extends MainDeploy
     Publisher<Bool> rosPublisher;
     rosPublisher = node.newPublisher("/ATRV/LightAct",
 				     "std_msgs/Bool");
-    // new instance from class in Listing#~\ref{listing:light-implem}#
+    // creates a new instance from class in Listing#~\ref{listing:light-implem}#
     RosLight lightPublisher = new RosLight(rosPublisher);
     // schedules for deployment
     adder.deploy(lightPublisher);

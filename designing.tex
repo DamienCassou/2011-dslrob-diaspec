@@ -7,7 +7,7 @@ application in \diaspec{} component types. Then we present a case
 study that we use as an example of how to describe a robotics
 application with \diaspec{}.
 
-In the rest of this paper we are going to take
+In the rest of this paper we use
 ROS\footnote{\url{http://www.ros.org/wiki/}} as the underlying
 middleware for our case study. We believe it is a good choice as ROS
 is becoming a standard within the robotics community. It is important
@@ -112,9 +112,9 @@ In the random mode, the robot goes straight and when an obstacle is
 close enough turns before going straight again. In the exploration
 mode, the robot goes to unvisited locations with the goal to visit as
 much as possible from the neighborhood. The current mode can be
-changed anytime by an operator through a graphical interface. In both
-modes, the robot turns on an embedded projector and takes pictures
-when it is in a zone with obstacles.
+changed at anytime by an operator through a graphical interface. In
+both modes, the robot turns on an embedded projector and takes
+pictures when it is in a zone with obstacles.
 
 Let us now discuss the above steps in the context of this case
 study (Figure~\ref{fig:diaspec-graph} represents the result).
@@ -132,31 +132,26 @@ We assume no previous \diaspec{} application and thus no \diaspec{}
 component to reuse.
 
 \paragraph*{Listing capabilities}
-Our robot comes with a range-finder type laser scanner, a light
-projector, a camera, and a set of wheels. We are reusing the
-\emph{exploration} capability developed by the Bosch robotics research
-group.\footnote{\url{http://www.ros.org/wiki/explore}} This capability
-is based on a well-known frontier-based exploration
-algorithm~\cite{Yamau98a}. In this algorithm the exploration is
-composed of two steps: a motion toward a location and a new
-observation of the environment at this location. The location is
-chosen among a set of candidate locations on the frontier between
-explored and unexplored space. This capability is exactly what we need
-for the exploration mode of the robot. From all these capabilities, we
-identify:
+The Bosh robotics research group develops an \emph{exploration}
+capability\footnote{\url{http://www.ros.org/wiki/explore}} based on a
+well-known frontier-based exploration algorithm~\cite{Yamau98a}. In
+this algorithm the exploration is composed of two steps: a motion
+toward a location and a new observation of the environment at this
+location. The location is chosen among a set of candidate locations on
+the frontier between explored and unexplored space. This capability is
+exactly what we need for the exploration mode of the robot. Our robot
+comes with a range-finder type laser scanner, a light projector, a
+camera, and a set of wheels. From all these capabilities, we identify:
+
 \begin{itemize}
 \item a \ct{LaserScan} entity class with a \ct{ranges} source
-  providing laser ranges from the sensor which the application can
-  deactivate when the robot is in exploration mode;\footnote{it is
-    important to note that the application is not going to deactivate
-    the hardware-level sensor (used in the two modes) but only the
-    application-level source (only used in the random mode).}
+  providing laser ranges from the sensor;
 \item A \ct{ModeSelector} entity that provides a graphical interface
-  for the operator to choose the current mode of the robot.
+  for the operator to choose the current mode of the robot;
 \item an \ct{Exploration} entity that provides a source of twists for
   the robot;
-\item a \ct{Light} and \ct{Camera} entities that respectively take
-  pictures and enlighten the neighborhood on request;
+\item a \ct{Light} and \ct{Camera} entities that respectively
+  enlighten the neighborhood and take pictures on request;
 \item a \ct{Wheel} entity that can turn or roll on request;
 \end{itemize}
 
@@ -172,16 +167,16 @@ or not some obstacles are in the neighborhood.
 The \ct{Motion} context operator produces a twist based on which mode
 is selected and on the twist values coming from both modes. The
 selected mode is directly provided by the \ct{ModeSelector} entity. We
-introduce a \ct{RandomMotion} context operator that produces random
-twists. The twist for the exploration mode is directly provided by the
-\ct{Exploration} entity. Both the \ct{ObstacleZone} and
-\ct{RandomMotion} context operators need the information about nearby
-obstacles. We thus introduce the \ct{ObstacleDetection} context
+introduce a \ct{RandomMotion} context operator that produces twists
+for the random mode. The twist for the exploration mode is directly
+provided by the \ct{Exploration} entity. Both the \ct{ObstacleZone}
+and \ct{RandomMotion} context operators need the information about
+nearby obstacles. We thus introduce the \ct{ObstacleDetection} context
 operator to indicate the proximity of an obstacle.
 
 \paragraph*{Identifying control operators}
 The \ct{MotionController} control operator takes information from the
-\ct{Motion} context operator and transmit this information to the
+\ct{Motion} context operator and transmits this information to the
 \ct{Wheel} entity. The \ct{ObstacleManager} control operator takes
 information from the \ct{ObstacleZone} context operator and triggers the
 light and takes a picture with the camera.
