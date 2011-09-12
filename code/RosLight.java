@@ -9,13 +9,13 @@ public class RosLight extends AbstractLight {
     publish(false);
   }
 
-  // required by design in Listing#~\ref{listing:design}# line#~\ref{design:on}#
+  // required by design in Listing#~\ref{listing:design}# line#~\ref{design:on}# and line#~\ref{design:light-onoff}#
   @Override // from super class
   protected void on() throws Exception {
     publish(true);
   }
 
-  // required by design in Listing#~\ref{listing:design}# line#~\ref{design:off}#
+  // required by design in Listing#~\ref{listing:design}# line#~\ref{design:off}# and line#~\ref{design:light-onoff}#
   @Override // from super class
   protected void off() throws Exception {
     publish(false);
@@ -23,7 +23,7 @@ public class RosLight extends AbstractLight {
 
   // turns on or off the light depending on the parameter
   private void publish(boolean val) {
-    // converts the Java type boolean to the ROS type BOOL
+    // converts the Java type boolean to the ROS type Bool
     Bool bool = new Bool();
     bool.data = val;
     // asks the robot to trigger its light projector

@@ -40,18 +40,18 @@ previous works~\cite{Cass09b,Cass11a,Cass11b}.
 \subsection{Implementing an operator}
 
 For each context or control operator, a dedicated abstract class is
-generated in the programming framework. For each interaction contract
-of this operator, the generated abstract class contains an
-\emph{abstract method} and a corresponding \emph{calling method}. The
-abstract method is to be implemented by the developer while the
-calling method is used by the framework to call the implementation of
-the abstract method with the expected arguments.
+generated in the programming framework. For each input source of this
+operator, the generated abstract class contains an \emph{abstract
+  method} and a corresponding \emph{calling method}. The abstract
+method is to be implemented by the developer while the calling method
+is used by the framework to call the implementation of the abstract
+method with the expected arguments.
 
-The signature of each abstract method is directly derived from the
-interaction contract: the name of the method is derived from the
-activation condition, the return type is derived from the reaction,
-and the parameters are derived from the activation condition and the
-reaction.
+% The signature of each abstract method is directly derived from the
+% interaction contract: the name of the method is derived from the
+% activation condition, the return type is derived from the reaction,
+% and the parameters are derived from the activation condition and the
+% reaction.
 
 Listing~\ref{listing:contextop-implem} presents a possible Java
 implementation of the \ct{RandomMotion} context operator. The

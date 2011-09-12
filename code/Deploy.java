@@ -9,37 +9,45 @@ public class Deploy extends MainDeploy
   @Override // from ROS NodeMain
   public void main(NodeConfiguration configuration) {
     // creates a ROS node
-    node = new DefaultNode("laser_cmd", configuration);
-    addLaserScan();
-    addLight();
-    // this is defined in the MainDeploy abstract class
+    NodeFactory factory = new DefaultNodeFactory();
+    node = factory.newNode("laser_cmd", configuration);
+    // this is defined in the MainDeploy abstract class,
+    // calls all deploy methods
     deployAll();
   }
 
-  private void addLaserScan() {
-    RosLaserScan scan = new RosLaserScan();
-    // asks ROS to send laser scan messages to laserScan
-    node.createSubscriber("/ATRV/Sick", 
-			  "sensor_msgs/LaserScan", scan);
-    // schedules for deployment
-    add(laserScan);
-  }
-
-  private void addLight() {
-    // allows the application to send messages to ROS
-    Publisher<Bool> rosPublisher;
-    rosPublisher = node.createPublisher("/ATRV/LightAct",
-					"std_msgs/Bool");
-    RosLight lightPublisher = new RosLight(rosPublisher);
-    // schedules for deployment
-    add(lightPublisher);
+  // automatically called by the programming framework
+  @Override  // from super class
+  protected void deployRandomMotions(
+                  Adder<AbstractRandomMotion>#~#adder)#~#{
+    // new instance from class in Listing#~\ref{listing:contextop-implem}#
+    adder.deploy(new RandomMotion());
   }
 
   // automatically called by the programming framework
-  @Override // from super class
-  protected AbstractRandomMotion createRandomMotion() {
-    // creates a new instance of a context operator that
-    // will be deployed by deployAll()
-    return new RandomMotion();
+  @Override  // from super class
+  protected void deployLaserScans(
+                     Adder<AbstractLaserScan>#~#adder)#~#{
+    // new instance from class in Listing#~\ref{listing:laserscan-implem}#
+    RosLaserScan scan = new RosLaserScan();
+    // asks ROS to send laser scan messages to scan
+    node.newSubscriber("/ATRV/Sick",
+                       "sensor_msgs/LaserScan", scan);
+    // schedules for deployment
+    adder.deploy(scan);
+  }
+
+  // automatically called by the programming framework
+  @Override  // from super class
+  protected void deployLights(
+                         Adder<AbstractLight>#~#adder)#~#{
+    // allows the application to send messages to ROS
+    Publisher<Bool> rosPublisher;
+    rosPublisher = node.newPublisher("/ATRV/LightAct",
+				     "std_msgs/Bool");
+    // new instance from class in Listing#~\ref{listing:light-implem}#
+    RosLight lightPublisher = new RosLight(rosPublisher);
+    // schedules for deployment
+    adder.deploy(lightPublisher);
   }
 }

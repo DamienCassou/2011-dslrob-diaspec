@@ -4,13 +4,13 @@ public class RosLaserScan extends AbstractLaserScan
 
   private boolean isStarted = false;
 
-  // required by design in Listing#~\ref{listing:design}# line#~\ref{design:on}# and line#~\ref{design:light-onoff}#
+  // required by design in Listing#~\ref{listing:design}# line#~\ref{design:on}# and line#~\ref{design:laserscan-onoff}#
   @Override // from super class
   protected void on() throws Exception {
     isStarted = true;
   }
 
-  // required by design in Listing#~\ref{listing:design}# line#~\ref{design:on}# and line#~\ref{design:light-onoff}#
+  // required by design in Listing#~\ref{listing:design}# line#~\ref{design:on}# and line#~\ref{design:laserscan-onoff}#
   @Override // from super class
   protected void off() throws Exception {
     isStarted = false;

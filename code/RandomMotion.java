@@ -1,6 +1,10 @@
 // Implementation of RandomMotion from Listing#~\ref{listing:design}# line#~\ref{design:randommotion-b}#
 public class RandomMotion extends AbstractRandomMotion {
 
+  // automatically called by the programming framework
+  // when ObstacleDetection sends a new value. The method
+  // parameter is the value sent by ObstacleDetection
+  // whose structure is defined in Listing#~\ref{listing:design}# line#~\ref{design:obstacle-b}#
   @Override // from super class
   public Twist onObstacleDetection(Obstacle obstacle) {
     Twist cmd = new Twist();
@@ -8,6 +12,9 @@ public class RandomMotion extends AbstractRandomMotion {
       cmd.angular.z = angleVelocity(obstacle.getRanges());
     else
       cmd.linear.x = new Float(1);
+
+    // value transmitted automatically by the programming
+    // framework to subscribed operators (here 'Motion')
     return cmd;
   }
 

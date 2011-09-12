@@ -217,21 +217,23 @@ context operator, and a new control operator. For this application, we
 decide to reuse the \ct{Twist} data type of the ROS middleware which
 Listing~\ref{listing:design} illustrates in line~\ref{design:import}.
 
-Additionally to the description of an operator's input sources, the
-\diaspec{} language allows each operator to describe a set of
-\emph{interaction contracts} that coordinate these input sources. An
-interaction contract is a tuple that describes an \emph{activation
-  condition} indicating which input sources can activate the operator
-and a \emph{reaction} indicating what to do as a result of the
-activation condition.\footnote{Previous work~\cite{Cass11a} also
-  includes in the tuple a set of \emph{data requirements} indicating
-  the additional input sources an operator can use for a particular
-  activation condition. This is not used in this case study.} The
-\ct{interaction} keyword is used to introduce an interaction contract.
-For example, the \ct{ObstacleDetection}'s interaction contract
-(Listing~\ref{listing:design}, line~\ref{design:interaction})
-indicates that this context operator always publishes a data when it
-receives information from the laser scan.
+% interaction contracts: Additionally to the description of an
+% operator's input sources, the \diaspec{} language allows each
+% operator to describe a set of \emph{interaction contracts} that
+% coordinate these input sources. An interaction contract is a tuple
+% that describes an \emph{activation condition} indicating which input
+% sources can activate the operator and a \emph{reaction} indicating
+% what to do as a result of the activation
+% condition.\footnote{Previous work~\cite{Cass11a} also includes in
+% the tuple a set of \emph{data requirements} indicating the
+% additional input sources an operator can use for a particular
+% activation condition. This is not used in this case study.} The
+% \ct{interaction} keyword is used to introduce an interaction
+% contract. For example, the \ct{ObstacleDetection}'s interaction
+% contract (Listing~\ref{listing:design},
+% line~\ref{design:interaction}) indicates that this context operator
+% always publishes a data when it receives information from the laser
+% scan.
 
 In this section we saw how to design a robotics application using
 the SCC architectural pattern and the \diaspec{} design language. Both
