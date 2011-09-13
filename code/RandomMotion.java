@@ -13,7 +13,7 @@ public class RandomMotion extends AbstractRandomMotion {
       cmd.angular.z = angleVelocity(obstacle.getRanges());
     else
       // go straight
-      cmd.linear.x = new Float(1);
+      cmd.linear.x = new Float(1.0);
 
     // value transmitted automatically by the programming
     // framework to subscribed operators (here 'Motion')
